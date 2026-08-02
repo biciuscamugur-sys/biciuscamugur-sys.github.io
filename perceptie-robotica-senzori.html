@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cum „văd" roboții mobili obstacolele din jurul lor — SINAPSA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0D0E14; --surface:#15161F; --line:#292A38; --text:#E9E9F0; --text-muted:#9294A8; --accent:#8B5CF6; --signal:#FFB020; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; line-height:1.75; }
+  h1,h2{ font-family:'Space Grotesk', sans-serif; }
+  a{ color:var(--accent); text-decoration:none; } a:hover{ text-decoration:underline; }
+  .wrap{ max-width:720px; margin:0 auto; padding:0 24px; }
+  header{ border-bottom:1px solid var(--line); padding:18px 0; margin-bottom:56px; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; max-width:720px; margin:0 auto; padding:0 24px; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; }
+  .logo-dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .back{ font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--text-muted); }
+  main{ padding:0 0 100px; }
+  .card-tag{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.04em; display:block; margin-bottom:16px; }
+  h1{ font-size:34px; margin-bottom:16px; line-height:1.2; }
+  .meta{ color:var(--text-muted); font-size:13.5px; font-family:'JetBrains Mono', monospace; margin-bottom:48px; }
+  h2{ font-size:21px; margin:40px 0 14px; }
+  p{ color:var(--text-muted); font-size:16px; margin-bottom:16px; }
+  strong{ color:var(--text); }
+  table{ width:100%; border-collapse:collapse; margin:20px 0 28px; font-size:14.5px; }
+  th, td{ text-align:left; padding:12px 14px; border-bottom:1px solid var(--line); color:var(--text-muted); }
+  th{ color:var(--text); font-family:'JetBrains Mono', monospace; font-size:12.5px; font-weight:500; }
+  footer{ border-top:1px solid var(--line); padding:32px 24px; text-align:center; color:var(--text-muted); font-size:13px; }
+  .next{ margin-top:56px; padding-top:24px; border-top:1px solid var(--line); }
+</style>
+<!-- Google Analytics (GA4) -- inlocuieste G-XXXXXXXXXX cu ID-ul tau real, primit de la analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-XXXXXXXXXX");
+</script>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo"><span class="logo-dot"></span>SINAPSA</a>
+    <a href="index.html#articole" class="back">← Toate articolele</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <span class="card-tag">Robotică</span>
+  <h1>Cum „văd" roboții mobili obstacolele din jurul lor</h1>
+  <p class="meta">6 min citire</p>
+
+  <p>Un robot mobil nu are ochi în sensul uman, dar poate „percepe" mediul din jur cu o precizie surprinzătoare. Iată cum funcționează, de la cele mai simple soluții, la cele mai avansate.</p>
+
+  <h2>Senzorul ultrasonic — soluția cea mai accesibilă</h2>
+  <p>Cel mai comun senzor pentru roboți de început este cel <strong>ultrasonic</strong> (ex: HC-SR04). Funcționează ca liliecii: trimite un impuls de sunet de frecvență înaltă, imperceptibil pentru om, și măsoară timpul până când sunetul se întoarce, reflectat de un obstacol.</p>
+  <p><strong>Avantaje:</strong> ieftin (sub 15 lei), simplu de folosit, funcționează bine pe distanțe scurte (2 cm – 4 m). <strong>Limitări:</strong> nu detectează bine suprafețele moi (absorb sunetul) sau unghiurile foarte înclinate.</p>
+
+  <h2>Senzorii infraroșu — pentru detecție de proximitate rapidă</h2>
+  <p>Senzorii IR emit lumină infraroșie și măsoară cât de multă se reflectă înapoi. Sunt mai rapizi decât cei ultrasonici, dar mai puțin preciși pe distanțe mari, și pot fi afectați de lumina solară puternică.</p>
+  <p>Sunt folosiți frecvent pentru detecția marginilor (ex: un robot care nu trebuie să cadă de pe o masă) sau pentru urmărirea unei linii trasate pe podea.</p>
+
+  <h2>LiDAR — nivelul următor</h2>
+  <p><strong>LiDAR</strong> (Light Detection and Ranging) funcționează similar cu senzorul ultrasonic, dar folosește impulsuri laser în loc de sunet, și de obicei rotește senzorul pentru a scana întregul mediu din jurul robotului.</p>
+  <p>Rezultatul este o „hartă" 2D sau 3D foarte precisă a mediului — tehnologia stă la baza mașinilor autonome și a roboților industriali avansați. Costul a scăzut semnificativ, iar module LiDAR simple, pentru hobby, devin tot mai accesibile.</p>
+
+  <h2>Camerele și viziunea computerizată</h2>
+  <p>Unii roboți „văd" literal, folosind camere obișnuite combinate cu algoritmi de procesare a imaginii. Acest tip de percepție permite recunoașterea obiectelor, a culorilor, chiar a fețelor — dar complexitatea și costul de calcul sunt mult mai mari, motiv pentru care camerele se combină de obicei cu plăci precum Raspberry Pi.</p>
+
+  <h2>Care metodă e potrivită pentru proiectul tău?</h2>
+  <table>
+    <tr><th>Metodă</th><th>Cost</th><th>Complexitate</th><th>Potrivit pentru</th></tr>
+    <tr><td>Ultrasonic</td><td>Foarte mic</td><td>Foarte simplă</td><td>Evitare obstacole de bază</td></tr>
+    <tr><td>Infraroșu</td><td>Mic</td><td>Simplă</td><td>Urmărire linie, detecție margini</td></tr>
+    <tr><td>LiDAR</td><td>Mediu-mare</td><td>Medie</td><td>Hărți precise ale mediului</td></tr>
+    <tr><td>Cameră + AI</td><td>Mare</td><td>Ridicată</td><td>Recunoaștere obiecte, navigare complexă</td></tr>
+  </table>
+
+  <h2>Concluzie</h2>
+  <p>Pentru primul tău robot, un senzor ultrasonic e suficient și te învață principiile de bază. Pe măsură ce proiectele devin mai ambițioase, poți combina mai multe tipuri de senzori — exact ce fac roboții profesioniști pentru a naviga fiabil în medii complexe.</p>
+
+  <div class="next">
+    <a href="primul-robot-arduino.html">→ Următorul articol: Primul tău robot cu Arduino — pas cu pas</a>
+  </div>
+</main>
+
+<footer>© 2026 SINAPSA — <a href="index.html">înapoi la site</a></footer>
+
+</body>
+</html>

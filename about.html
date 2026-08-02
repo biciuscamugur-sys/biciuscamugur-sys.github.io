@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Despre & Contact — SINAPSA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0D0E14; --surface: #15161F; --line: #292A38;
+    --text: #E9E9F0; --text-muted: #9294A8; --accent: #8B5CF6; --signal: #FFB020;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; line-height:1.7; }
+  h1,h2{ font-family:'Space Grotesk', sans-serif; }
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  .wrap{ max-width:760px; margin:0 auto; padding:0 24px; }
+  header{ border-bottom:1px solid var(--line); padding:18px 0; margin-bottom:60px; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; }
+  .logo-dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .back{ font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--text-muted); }
+  main{ padding:0 0 100px; }
+  .eyebrow{ font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--signal); margin-bottom:16px; display:block; }
+  h1{ font-size:36px; margin-bottom:24px; }
+  h2{ font-size:20px; margin:40px 0 14px; }
+  p, li{ color:var(--text-muted); font-size:15.5px; margin-bottom:14px; }
+  .panel{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:24px; margin-top:16px; }
+  .panel-row{ display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid var(--line); font-family:'JetBrains Mono', monospace; font-size:13.5px; }
+  .panel-row:last-child{ border-bottom:none; }
+  .panel-row span:first-child{ color:var(--text-muted); }
+  .panel-row span:last-child{ color:var(--text); }
+  footer{ border-top:1px solid var(--line); padding:32px 24px; text-align:center; color:var(--text-muted); font-size:13px; }
+</style>
+<!-- Google Analytics (GA4) -- inlocuieste G-XXXXXXXXXX cu ID-ul tau real, primit de la analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-XXXXXXXXXX");
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo"><span class="logo-dot"></span>SINAPSA</a>
+    <a href="index.html" class="back">← Înapoi la site</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <span class="eyebrow">CINE SUNTEM</span>
+  <h1>Despre SINAPSA</h1>
+
+  <p>SINAPSA a pornit dintr-o întrebare simplă: de ce sunt majoritatea materialelor despre robotică și inteligență artificială fie prea tehnice pentru un începător, fie superficiale pentru cineva care chiar vrea să înțeleagă? Am construit acest spațiu pentru cititorii de limbă română curioși despre tehnologie — fără jargon inutil, fără titluri senzaționale.</p>
+
+  <p>Publicăm articole explicative, tutoriale testate practic (nu doar copiate din alte surse) și analize despre direcția în care merge tehnologia — de la roboți construiți acasă, până la impactul inteligenței artificiale asupra muncii de zi cu zi.</p>
+
+  <h2>Ce poți găsi aici</h2>
+  <p>Articole împărțite pe categorii clare: fundamente AI, robotică practică (proiecte DIY), automatizare aplicată, și analize despre industria locală și globală de tehnologie.</p>
+
+  <h2>Contact</h2>
+  <p>Pentru întrebări, sugestii de subiecte, colaborări sau parteneriate, scrie-ne direct din formularul de mai jos, sau la adresa de email indicată.</p>
+
+  <form action="https://formspree.io/f/COMPLETEAZA-ID-UL-TAU" method="POST" style="margin:24px 0;">
+    <div style="margin-bottom:16px;">
+      <label style="display:block; font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--text-muted); margin-bottom:6px;">NUME</label>
+      <input type="text" name="nume" required style="width:100%; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:12px 14px; color:var(--text); font-size:14.5px; font-family:'Inter', sans-serif;">
+    </div>
+    <div style="margin-bottom:16px;">
+      <label style="display:block; font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--text-muted); margin-bottom:6px;">EMAIL</label>
+      <input type="email" name="email" required style="width:100%; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:12px 14px; color:var(--text); font-size:14.5px; font-family:'Inter', sans-serif;">
+    </div>
+    <div style="margin-bottom:20px;">
+      <label style="display:block; font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--text-muted); margin-bottom:6px;">MESAJ</label>
+      <textarea name="mesaj" required rows="5" style="width:100%; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:12px 14px; color:var(--text); font-size:14.5px; font-family:'Inter', sans-serif; resize:vertical;"></textarea>
+    </div>
+    <button type="submit" style="background:var(--accent); color:#fff; border:none; border-radius:8px; padding:13px 24px; font-weight:600; font-size:14.5px; cursor:pointer; font-family:'Inter', sans-serif;">Trimite mesajul</button>
+  </form>
+
+  <div class="panel">
+    <div class="panel-row"><span>Email direct</span><span>[completează adresa ta de email]</span></div>
+    <div class="panel-row"><span>Locație</span><span>România</span></div>
+    <div class="panel-row"><span>Limbă publicare</span><span>Română</span></div>
+    <div class="panel-row"><span>Frecvență articole</span><span>2× / săptămână</span></div>
+  </div>
+</main>
+
+<footer>
+  © 2026 SINAPSA — <a href="index.html">înapoi la site</a>
+</footer>
+
+</body>
+</html>

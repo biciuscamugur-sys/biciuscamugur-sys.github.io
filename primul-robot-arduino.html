@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primul tău robot cu Arduino — pas cu pas — SINAPSA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0D0E14; --surface:#15161F; --line:#292A38; --text:#E9E9F0; --text-muted:#9294A8; --accent:#8B5CF6; --signal:#FFB020; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; line-height:1.75; }
+  h1,h2{ font-family:'Space Grotesk', sans-serif; }
+  a{ color:var(--accent); text-decoration:none; } a:hover{ text-decoration:underline; }
+  .wrap{ max-width:720px; margin:0 auto; padding:0 24px; }
+  header{ border-bottom:1px solid var(--line); padding:18px 0; margin-bottom:56px; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; max-width:720px; margin:0 auto; padding:0 24px; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; }
+  .logo-dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .back{ font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--text-muted); }
+  main{ padding:0 0 100px; }
+  .card-tag{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.04em; display:block; margin-bottom:16px; }
+  h1{ font-size:34px; margin-bottom:16px; line-height:1.2; }
+  .meta{ color:var(--text-muted); font-size:13.5px; font-family:'JetBrains Mono', monospace; margin-bottom:48px; }
+  h2{ font-size:21px; margin:40px 0 14px; }
+  p{ color:var(--text-muted); font-size:16px; margin-bottom:16px; }
+  ul, ol{ padding-left:22px; margin-bottom:16px; color:var(--text-muted); font-size:16px; }
+  li{ margin-bottom:6px; }
+  strong{ color:var(--text); }
+  pre{ background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0 24px; }
+  code{ font-family:'JetBrains Mono', monospace; font-size:13.5px; color:var(--signal); }
+  footer{ border-top:1px solid var(--line); padding:32px 24px; text-align:center; color:var(--text-muted); font-size:13px; }
+  .next{ margin-top:56px; padding-top:24px; border-top:1px solid var(--line); }
+</style>
+<!-- Google Analytics (GA4) -- inlocuieste G-XXXXXXXXXX cu ID-ul tau real, primit de la analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-XXXXXXXXXX");
+</script>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo"><span class="logo-dot"></span>SINAPSA</a>
+    <a href="index.html#articole" class="back">← Toate articolele</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <span class="card-tag">Proiecte DIY</span>
+  <h1>Primul tău robot cu Arduino — pas cu pas</h1>
+  <p class="meta">9 min citire</p>
+
+  <p>Nu ai nevoie de studii de inginerie ca să construiești un robot funcțional. Cu un buget de sub 150 de lei și un weekend liber, poți construi un robot mobil simplu, care evită obstacolele singur.</p>
+
+  <h2>Ce cumperi (lista de componente)</h2>
+  <ul>
+    <li>1× placă <strong>Arduino Uno</strong> (sau o clonă compatibilă, mai ieftină)</li>
+    <li>1× șasiu de robot cu 2 roți motoare (kit, cu tot cu motoare)</li>
+    <li>1× driver de motoare <strong>L298N</strong></li>
+    <li>1× senzor ultrasonic <strong>HC-SR04</strong></li>
+    <li>1× suport pentru 4 baterii AA + baterii</li>
+    <li>Fire de conexiune (jumper wires) tată-tată și tată-mamă</li>
+  </ul>
+  <p>Toate aceste componente se găsesc împreună, ca „kit robot pentru începători", pe site-uri românești de electronică sau pe platforme internaționale.</p>
+
+  <h2>Pasul 1 — Montezi șasiul</h2>
+  <p>Fixezi cele două motoare pe șasiu conform instrucțiunilor kit-ului. Atașezi roțile pe axul motoarelor.</p>
+
+  <h2>Pasul 2 — Conectezi driverul de motoare</h2>
+  <p>Driverul L298N stă între Arduino și motoare — Arduino nu poate alimenta motoarele direct, necesită mai mult curent decât poate oferi.</p>
+  <ul>
+    <li>Motoarele se conectează la ieșirile driverului (OUT1-OUT4)</li>
+    <li>Driverul se conectează la Arduino pe 4 pini digitali (ex: 5, 6, 9, 10)</li>
+    <li>Bateria alimentează driverul, nu direct Arduino</li>
+  </ul>
+
+  <h2>Pasul 3 — Montezi senzorul ultrasonic</h2>
+  <p>Senzorul HC-SR04 se montează în față, orientat înainte. Are 4 pini: VCC, GND, Trig, Echo — Trig și Echo se conectează la doi pini digitali de pe Arduino (ex: 7 și 8).</p>
+
+  <h2>Pasul 4 — Încarci codul</h2>
+  <p>Codul de bază face următoarele: robotul avansează, senzorul măsoară constant distanța până la obstacol, iar când distanța scade sub un prag, robotul oprește, dă înapoi puțin, și se rotește înainte să continue.</p>
+  <pre><code>Cât timp robotul funcționează:
+  Măsoară distanța cu senzorul
+  Dacă distanța > 15 cm:
+    Mergi înainte
+  Altfel:
+    Oprește
+    Dă înapoi 0.5 secunde
+    Rotește-te 90 de grade</code></pre>
+  <p>Codul complet, în limbaj Arduino (C++), poate fi găsit ușor căutând „Arduino obstacle avoidance robot HC-SR04 L298N" — există zeci de variante open-source verificate de comunitate.</p>
+
+  <h2>Pasul 5 — Testezi</h2>
+  <p>Pui robotul pe podea, într-o cameră cu câteva obstacole. Ar trebui să se miște înainte, să detecteze obstacolele și să se rotească pentru a le evita.</p>
+
+  <h2>Probleme comune și soluții</h2>
+  <ul>
+    <li><strong>Robotul nu se mișcă deloc</strong> → verifică polaritatea bateriilor și conexiunile driverului</li>
+    <li><strong>Motoarele se învârt în direcții greșite</strong> → inversează firele de pe unul dintre motoare</li>
+    <li><strong>Senzorul nu detectează corect</strong> → verifică dacă pinii Trig/Echo sunt conectați corect</li>
+  </ul>
+
+  <h2>Ce urmează</h2>
+  <p>Odată ce ai robotul de bază funcțional, poți adăuga: control prin Bluetooth de pe telefon, o cameră mică pentru urmărire de linie, sau senzori suplimentari pentru navigare mai complexă.</p>
+
+  <div class="next">
+    <a href="automatizari-ai-2026.html">→ Următorul articol: Automatizări AI care chiar economisesc timp în 2026</a>
+  </div>
+</main>
+
+<footer>© 2026 SINAPSA — <a href="index.html">înapoi la site</a></footer>
+
+</body>
+</html>
