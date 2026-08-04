@@ -32,17 +32,25 @@
   code{ font-family:'JetBrains Mono', monospace; font-size:13.5px; color:var(--signal); }
   footer{ border-top:1px solid var(--line); padding:32px 24px; text-align:center; color:var(--text-muted); font-size:13px; }
   .next{ margin-top:56px; padding-top:24px; border-top:1px solid var(--line); }
+
+[data-theme="light"]{
+  --bg:#F7F7FA; --surface:#FFFFFF; --line:#E2E2EA;
+  --text:#15161F; --text-muted:#5B5D6E; --accent:#7C3AED; --signal:#B36B00;
+}
+body{ transition: background-color .25s ease, color .25s ease; }
 </style>
-<!-- Google Analytics (GA4) -- inlocuieste G-XXXXXXXXXX cu ID-ul tau real, primit de la analytics.google.com -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google Analytics (GA4) -- inlocuieste G-ERBPS9SJ3Q cu ID-ul tau real, primit de la analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ERBPS9SJ3Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag("js", new Date());
-  gtag("config", "G-XXXXXXXXXX");
+  gtag("config", "G-ERBPS9SJ3Q");
 </script>
 </head>
 <body>
+<button id="themeToggle" aria-label="Comuta tema" style="position:fixed; top:80px; right:20px; z-index:60; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 11px; color:var(--text); cursor:pointer; font-size:14px; font-family:'JetBrains Mono', monospace;">🌙</button>
+
 
 <header>
   <div class="nav">
@@ -55,6 +63,19 @@
   <span class="card-tag">Proiecte DIY</span>
   <h1>Primul tău robot cu Arduino — pas cu pas</h1>
   <p class="meta">9 min citire</p>
+
+  <div style="width:100%; height:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; margin-bottom:32px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+    <svg width="200" height="140" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+      <rect x="55" y="45" width="90" height="55" rx="6" fill="#15161F" stroke="#8B5CF6" stroke-width="1.5"/>
+      <rect x="65" y="55" width="24" height="16" rx="2" fill="#8B5CF6" opacity="0.6"/>
+      <circle cx="125" cy="60" r="5" fill="#FFB020"/>
+      <g stroke="#8B5CF6" stroke-width="1"><line x1="70" y1="80" x2="70" y2="90"/><line x1="85" y1="80" x2="85" y2="90"/>
+      <line x1="100" y1="80" x2="100" y2="90"/><line x1="115" y1="80" x2="115" y2="90"/></g>
+      <circle cx="75" cy="115" r="15" fill="none" stroke="#8B5CF6" stroke-width="2"/>
+      <circle cx="125" cy="115" r="15" fill="none" stroke="#8B5CF6" stroke-width="2"/>
+      <line x1="90" y1="100" x2="110" y2="100" stroke="#8B5CF6" stroke-width="2"/>
+    </svg>
+  </div>
 
   <p>Nu ai nevoie de studii de inginerie ca să construiești un robot funcțional. Cu un buget de sub 150 de lei și un weekend liber, poți construi un robot mobil simplu, care evită obstacolele singur.</p>
 
@@ -115,5 +136,74 @@
 
 <footer>© 2026 SINAPSA — <a href="index.html">înapoi la site</a></footer>
 
+<!-- Formspree Formbutton -->
+<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+  window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+  formbutton("create", {
+    action: "https://formspree.io/f/xrenngnr",
+    title: "Ai o intrebare?",
+    fields: [
+      {
+        type: "text",
+        label: "Nume:",
+        name: "nume",
+        placeholder: "Numele tau"
+      },
+      {
+        type: "email",
+        label: "Email:",
+        name: "email",
+        required: true,
+        placeholder: "adresa.ta@email.com"
+      },
+      {
+        type: "textarea",
+        label: "Mesaj:",
+        name: "message",
+        placeholder: "Cu ce te putem ajuta?"
+      },
+      { type: "submit" }
+    ],
+    styles: {
+      title: {
+        backgroundColor: "#8B5CF6"
+      },
+      button: {
+        backgroundColor: "#8B5CF6"
+      }
+    }
+  });
+</script>
+
+<button id="backToTop" aria-label="Inapoi sus" style="position:fixed; bottom:24px; left:24px; width:44px; height:44px; border-radius:50%; background:var(--surface); border:1px solid var(--line); color:var(--text); font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.35);">↑</button>
+<script>
+  var backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  backToTopBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var themeToggle = document.getElementById('themeToggle');
+  var savedTheme = localStorage.getItem('sinapsa-theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme','light');
+    if (themeToggle) themeToggle.textContent = '☀️';
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('sinapsa-theme','dark');
+      } else {
+        document.documentElement.setAttribute('data-theme','light');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('sinapsa-theme','light');
+      }
+    });
+  }
+</script>
 </body>
 </html>

@@ -28,17 +28,25 @@
   strong{ color:var(--text); }
   footer{ border-top:1px solid var(--line); padding:32px 24px; text-align:center; color:var(--text-muted); font-size:13px; }
   .next{ margin-top:56px; padding-top:24px; border-top:1px solid var(--line); }
+
+[data-theme="light"]{
+  --bg:#F7F7FA; --surface:#FFFFFF; --line:#E2E2EA;
+  --text:#15161F; --text-muted:#5B5D6E; --accent:#7C3AED; --signal:#B36B00;
+}
+body{ transition: background-color .25s ease, color .25s ease; }
 </style>
-<!-- Google Analytics (GA4) -- inlocuieste G-XXXXXXXXXX cu ID-ul tau real, primit de la analytics.google.com -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google Analytics (GA4) -- inlocuieste G-ERBPS9SJ3Q cu ID-ul tau real, primit de la analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ERBPS9SJ3Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag("js", new Date());
-  gtag("config", "G-XXXXXXXXXX");
+  gtag("config", "G-ERBPS9SJ3Q");
 </script>
 </head>
 <body>
+<button id="themeToggle" aria-label="Comuta tema" style="position:fixed; top:80px; right:20px; z-index:60; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 11px; color:var(--text); cursor:pointer; font-size:14px; font-family:'JetBrains Mono', monospace;">🌙</button>
+
 
 <header>
   <div class="nav">
@@ -51,6 +59,20 @@
   <span class="card-tag">Industrie</span>
   <h1>Roboții din fabricile românești: unde suntem acum</h1>
   <p class="meta">7 min citire</p>
+
+  <div style="width:100%; height:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; margin-bottom:32px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+    <svg width="200" height="140" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 30 110 L 30 60 L 55 45 L 55 60 L 80 45 L 80 110 Z" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>
+      <rect x="95" y="70" width="70" height="40" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>
+      <g stroke="#FFB020" stroke-width="2.5" fill="none" stroke-linecap="round">
+        <line x1="120" y1="70" x2="120" y2="50"/>
+        <line x1="120" y1="50" x2="145" y2="45"/>
+        <circle cx="120" cy="50" r="3" fill="#FFB020"/>
+      </g>
+      <circle cx="145" cy="45" r="4" fill="#FFB020"/>
+      <g stroke="#292A38" stroke-width="1"><line x1="105" y1="110" x2="105" y2="70"/><line x1="130" y1="110" x2="130" y2="70"/><line x1="150" y1="110" x2="150" y2="70"/></g>
+    </svg>
+  </div>
 
   <p>Automatizarea industrială nu mai este un subiect exotic pentru economia românească. De la linii de asamblare auto până la depozite logistice, robotica industrială își face loc constant — deși ritmul variază mult între sectoare.</p>
 
@@ -79,5 +101,74 @@
 
 <footer>© 2026 SINAPSA — <a href="index.html">înapoi la site</a></footer>
 
+<!-- Formspree Formbutton -->
+<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+  window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+  formbutton("create", {
+    action: "https://formspree.io/f/xrenngnr",
+    title: "Ai o intrebare?",
+    fields: [
+      {
+        type: "text",
+        label: "Nume:",
+        name: "nume",
+        placeholder: "Numele tau"
+      },
+      {
+        type: "email",
+        label: "Email:",
+        name: "email",
+        required: true,
+        placeholder: "adresa.ta@email.com"
+      },
+      {
+        type: "textarea",
+        label: "Mesaj:",
+        name: "message",
+        placeholder: "Cu ce te putem ajuta?"
+      },
+      { type: "submit" }
+    ],
+    styles: {
+      title: {
+        backgroundColor: "#8B5CF6"
+      },
+      button: {
+        backgroundColor: "#8B5CF6"
+      }
+    }
+  });
+</script>
+
+<button id="backToTop" aria-label="Inapoi sus" style="position:fixed; bottom:24px; left:24px; width:44px; height:44px; border-radius:50%; background:var(--surface); border:1px solid var(--line); color:var(--text); font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.35);">↑</button>
+<script>
+  var backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  backToTopBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var themeToggle = document.getElementById('themeToggle');
+  var savedTheme = localStorage.getItem('sinapsa-theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme','light');
+    if (themeToggle) themeToggle.textContent = '☀️';
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('sinapsa-theme','dark');
+      } else {
+        document.documentElement.setAttribute('data-theme','light');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('sinapsa-theme','light');
+      }
+    });
+  }
+</script>
 </body>
 </html>

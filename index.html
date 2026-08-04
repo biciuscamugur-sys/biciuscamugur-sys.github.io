@@ -202,17 +202,25 @@
     .logo-dot{ animation:none; }
     #synapse-bg{ opacity:0.3; }
   }
+
+[data-theme="light"]{
+  --bg:#F7F7FA; --surface:#FFFFFF; --line:#E2E2EA;
+  --text:#15161F; --text-muted:#5B5D6E; --accent:#7C3AED; --signal:#B36B00;
+}
+body{ transition: background-color .25s ease, color .25s ease; }
 </style>
-<!-- Google Analytics (GA4) -- inlocuieste G-XXXXXXXXXX cu ID-ul tau real, primit de la analytics.google.com -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google Analytics (GA4) -- inlocuieste G-ERBPS9SJ3Q cu ID-ul tau real, primit de la analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ERBPS9SJ3Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag("js", new Date());
-  gtag("config", "G-XXXXXXXXXX");
+  gtag("config", "G-ERBPS9SJ3Q");
 </script>
 </head>
 <body>
+<button id="themeToggle" aria-label="Comuta tema" style="position:fixed; top:80px; right:20px; z-index:60; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 11px; color:var(--text); cursor:pointer; font-size:14px; font-family:'JetBrains Mono', monospace;">🌙</button>
+
 
 <svg id="synapse-bg"></svg>
 
@@ -244,7 +252,7 @@
   <div class="wrap">
     <div class="section-head">
       <h2>Ultimele articole</h2>
-      <span class="section-tag mono">6 articole publicate</span>
+      <span class="section-tag mono">8 articole publicate</span>
     </div>
     <div class="grid">
 
@@ -288,6 +296,20 @@
         <h3>Cine răspunde când decide un algoritm?</h3>
         <p>O discuție echilibrată despre responsabilitate, transparență și limitele automatizării.</p>
         <div class="card-meta"><span>8 min citire</span><span>Opinie</span></div>
+      </a>
+
+      <a href="machine-learning-vs-deep-learning.html" class="card">
+        <span class="card-tag mono">AI · Fundamente</span>
+        <h3>Machine Learning vs Deep Learning: care e diferența reală?</h3>
+        <p>O explicație clară a distincției dintre categoria mare (ML) și ramura specializată (deep learning).</p>
+        <div class="card-meta"><span>6 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="mituri-despre-roboti.html" class="card">
+        <span class="card-tag mono">Robotică · Opinie</span>
+        <h3>5 mituri despre roboți pe care ar trebui să le lași deoparte</h3>
+        <p>De la „roboții devin conștienți" la exagerările Hollywood-ului — ce e adevărat și ce nu.</p>
+        <div class="card-meta"><span>5 min citire</span><span>Nou</span></div>
       </a>
 
     </div>
@@ -383,5 +405,74 @@
   })();
 </script>
 
+<!-- Formspree Formbutton -->
+<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+  window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+  formbutton("create", {
+    action: "https://formspree.io/f/xrenngnr",
+    title: "Ai o intrebare?",
+    fields: [
+      {
+        type: "text",
+        label: "Nume:",
+        name: "nume",
+        placeholder: "Numele tau"
+      },
+      {
+        type: "email",
+        label: "Email:",
+        name: "email",
+        required: true,
+        placeholder: "adresa.ta@email.com"
+      },
+      {
+        type: "textarea",
+        label: "Mesaj:",
+        name: "message",
+        placeholder: "Cu ce te putem ajuta?"
+      },
+      { type: "submit" }
+    ],
+    styles: {
+      title: {
+        backgroundColor: "#8B5CF6"
+      },
+      button: {
+        backgroundColor: "#8B5CF6"
+      }
+    }
+  });
+</script>
+
+<button id="backToTop" aria-label="Inapoi sus" style="position:fixed; bottom:24px; left:24px; width:44px; height:44px; border-radius:50%; background:var(--surface); border:1px solid var(--line); color:var(--text); font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.35);">↑</button>
+<script>
+  var backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  backToTopBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var themeToggle = document.getElementById('themeToggle');
+  var savedTheme = localStorage.getItem('sinapsa-theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme','light');
+    if (themeToggle) themeToggle.textContent = '☀️';
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('sinapsa-theme','dark');
+      } else {
+        document.documentElement.setAttribute('data-theme','light');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('sinapsa-theme','light');
+      }
+    });
+  }
+</script>
 </body>
 </html>
