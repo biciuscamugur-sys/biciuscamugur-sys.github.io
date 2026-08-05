@@ -408,14 +408,39 @@ body{ transition: background-color .25s ease, color .25s ease; }
     <div class="newsletter">
       <h2>Primești un articol nou, direct pe email.</h2>
       <p>Fără spam, fără reclame excesive — doar tehnologie explicată clar, o dată pe săptămână.</p>
-      <div class="form-row">
-        <input type="email" placeholder="adresa.ta@email.com" aria-label="Adresă de email">
-        <button type="button">Abonează-te</button>
+      <div id="newsletter-succes" style="display:none; background:#8B5CF61a; border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin-bottom:20px; font-size:14.5px; max-width:420px; margin-left:auto; margin-right:auto;">
+        ✓ Te-ai abonat cu succes! Verifică-ți email-ul.
       </div>
+      <form id="newsletter-form" class="form-row" action="https://formspree.io/f/xrenngnr" method="POST">
+        <input type="hidden" name="_subject" value="Abonare noua newsletter SINAPSA">
+        <input type="hidden" name="tip" value="Abonare newsletter">
+        <input type="email" name="email" placeholder="adresa.ta@email.com" aria-label="Adresă de email" required>
+        <button type="submit">Abonează-te</button>
+      </form>
       <p class="form-note">Te poți dezabona oricând, dintr-un singur click.</p>
     </div>
   </div>
 </section>
+
+<script>
+  var newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var formData = new FormData(newsletterForm);
+      fetch(newsletterForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if (response.ok) {
+          document.getElementById('newsletter-succes').style.display = 'block';
+          newsletterForm.style.display = 'none';
+        }
+      });
+    });
+  }
+</script>
 
 <footer>
   <span>© 2026 SINAPSA — construit cu curiozitate.</span>
