@@ -1,10 +1,1 @@
-# Acesta este fișierul ads.txt — obligatoriu pentru Google AdSense.
-#
-# INSTRUCȚIUNI:
-# 1. După ce te aprobă Google AdSense, primești un cod de tipul "pub-1234567890123456"
-# 2. Înlocuiește "pub-0000000000000000" de mai jos cu codul tău real
-# 3. Șterge aceste linii de comentariu (care încep cu #)
-# 4. Încarci fișierul EXACT AȘA, cu numele "ads.txt", în directorul rădăcină al site-ului
-#    (adică lângă index.html, nu într-un subfolder)
-
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+google.com, pub-1546994471915181, DIRECT, f08c47fec0942fa0
