@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Al doilea robot: urmărire de linie — SINAPSA</title>
+<title>Viziunea computerizată: cum vede un calculator — SINAPSA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -49,138 +49,59 @@ body{ transition: background-color .25s ease, color .25s ease; }
 </header>
 
 <main class="wrap">
-  <span class="card-tag">Proiecte DIY</span>
-  <h1>Al doilea tău robot: urmărire de linie cu Arduino</h1>
-  <p class="meta">9 min citire</p>
+  <span class="card-tag">AI · Aprofundat</span>
+  <h1>Viziunea computerizată: cum „vede" un calculator o imagine</h1>
+  <p class="meta">8 min citire</p>
 
   <div style="width:100%; height:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; margin-bottom:32px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
     <svg width="200" height="140" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 20 120 Q 80 40 100 70 Q 120 100 180 30" fill="none" stroke="#292A38" stroke-width="6" stroke-linecap="round"/>
-      <rect x="88" y="60" width="24" height="20" rx="3" fill="none" stroke="#8B5CF6" stroke-width="2"/>
-      <circle cx="94" cy="82" r="3" fill="#FFB020"/><circle cx="100" cy="82" r="3" fill="#FFB020"/><circle cx="106" cy="82" r="3" fill="#FFB020"/>
+      <rect x="30" y="40" width="60" height="60" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>
+      <g stroke="#292A38" stroke-width="0.5">
+        <line x1="45" y1="40" x2="45" y2="100"/><line x1="60" y1="40" x2="60" y2="100"/><line x1="75" y1="40" x2="75" y2="100"/>
+        <line x1="30" y1="55" x2="90" y2="55"/><line x1="30" y1="70" x2="90" y2="70"/><line x1="30" y1="85" x2="90" y2="85"/>
+      </g>
+      <path d="M 100 70 L 130 70" stroke="#8B5CF6" stroke-width="1.5"/>
+      <path d="M 124 65 L 131 70 L 124 75" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>
+      <circle cx="160" cy="70" r="22" fill="none" stroke="#FFB020" stroke-width="1.5"/>
+      <circle cx="152" cy="63" r="2.5" fill="#FFB020"/><circle cx="168" cy="63" r="2.5" fill="#FFB020"/>
+      <path d="M 150 78 Q 160 85 170 78" fill="none" stroke="#FFB020" stroke-width="1.5"/>
     </svg>
   </div>
 
-  <p>Dacă ai construit deja robotul din primul nostru tutorial (cel care evită obstacole), ești pregătit pentru următorul pas natural: un robot care <strong>urmărește o linie trasată pe podea</strong>, un proiect clasic în robotică.</p>
+  <p>Ai citit despre senzorii ultrasonici și LiDAR — dar cum reușește, de fapt, un sistem să recunoască ce se află într-o imagine? Viziunea computerizată stă la baza a tot, de la deblocarea telefonului cu fața, până la mașinile autonome.</p>
 
-  <h2>De ce acest proiect e pasul logic următor</h2>
-  <p>Robotul cu evitare de obstacole ți-a arătat cum să controlezi motoare și să citești un senzor. Robotul cu urmărire de linie adaugă un concept nou, esențial în robotică: <strong>controlul proporțional</strong> — ajustarea continuă a comportamentului robotului, nu doar reacții de tip „da/nu".</p>
+  <h2>Pasul 1 — O imagine e doar un tabel de numere</h2>
+  <p>Pentru un calculator, o fotografie e o grilă uriașă de pixeli, fiecare reprezentat prin trei numere (roșu, verde, albastru). Viziunea computerizată începe de la o listă imensă de numere, fără niciun „sens" evident atașat.</p>
 
-  <h2>Ce cumperi în plus față de primul proiect</h2>
-  <p>Poți refolosi șasiul, motoarele și driverul L298N din primul robot. În plus, ai nevoie de un modul senzor de linie cu infraroșu (3-5 senzori pe o singură placă), sub 25 de lei.</p>
+  <h2>Pasul 2 — Detectarea marginilor și tiparelor simple</h2>
+  <p>Primele straturi ale unui sistem de viziune computerizată (o rețea neuronală convoluțională, CNN) caută tipare simple: linii, margini, colțuri, zone de contrast — identice indiferent de conținutul imaginii.</p>
 
-  <h2>Cum funcționează senzorul de linie</h2>
-  <p>Fiecare senzor infraroșu emite lumină și măsoară cât se reflectă înapoi. O suprafață albă reflectă mult, o linie neagră reflectă puțin. Cu mai mulți senzori, robotul poate determina de care parte se află linia față de centrul lui.</p>
+  <h2>Pasul 3 — Combinarea tiparelor în forme</h2>
+  <p>Straturile următoare combină marginile simple în forme mai complexe: un cerc, un contur de ochi, o textură. Fiecare strat succesiv „vede" o abstractizare mai înaltă decât cel anterior.</p>
 
-  <h2>Logica de bază a urmăririi</h2>
-  <p>Dacă linia e detectată de senzorul din centru, robotul merge drept. Dacă linia „alunecă" spre stânga, robotul virează ușor la stânga, ca să revină la centru. Invers pentru dreapta.</p>
-  <pre style="background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:16px 18px; overflow-x:auto; margin:16px 0 24px; font-family:monospace; font-size:13px; color:var(--signal);">Cât timp robotul funcționează:
-  Citește toți senzorii de linie
-  Dacă centrul detectează linia: Mergi drept
-  Dacă stânga detectează linia: Virează ușor la stânga
-  Dacă dreapta detectează linia: Virează ușor la dreapta</pre>
+  <h2>Pasul 4 — Recunoașterea obiectelor complete</h2>
+  <p>În straturile finale, sistemul combină formele parțiale pentru a recunoaște obiecte întregi. Această recunoaștere se bazează pe tipare învățate din milioane de imagini etichetate, nu pe reguli explicite.</p>
 
-  <h2>De ce „controlul proporțional" contează</h2>
-  <p>O abordare simplistă face robotul să zigzag-eze vizibil. O abordare mai avansată — control <strong>PID</strong> — ajustează intensitatea virajului proporțional cu distanța liniei de centru, rezultând o mișcare mult mai lină. Pentru un al doilea proiect, o versiune simplificată e suficientă.</p>
+  <h2>Aplicații practice, deja prezente</h2>
+  <p><strong>Deblocarea facială</strong> — compară trăsăturile feței cu un model salvat. <strong>Roboți cu recunoaștere de obiecte</strong> — disting un obstacol de o persoană. <strong>Diagnosticare medicală asistată</strong> — semnalează zone suspecte în scanări. <strong>Control de calitate industrial</strong> — detectează defecte vizuale automat. <strong>Vehicule autonome</strong> — identifică pietoni și semne de circulație.</p>
 
-  <h2>Probleme comune și soluții</h2>
-  <ul>
-    <li><strong>Robotul pierde linia în curbe</strong> → mărește viteza de reacție sau redu viteza generală</li>
-    <li><strong>Robotul „tremură"</strong> → ai nevoie de tranziție mai gradată, nu comenzi bruște</li>
-    <li><strong>Senzorii nu disting linia</strong> → verifică distanța senzor-podea (optim 3-5mm)</li>
-  </ul>
-
-  <h2>Vezi robotul „în acțiune" — simulare interactivă</h2>
-  <p>O simulare vizuală a logicii descrise mai sus: robotul urmărește traseul, corectând direcția când „alunecă" de pe linie.</p>
-
-  <div style="background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px; margin:20px 0 32px;">
-    <canvas id="lineSim" width="600" height="280" style="width:100%; height:auto; display:block; background:#0a0a10; border-radius:6px;"></canvas>
-    <p style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted); margin-top:10px; text-align:center;">Simulare: robotul urmărește traseul (linia gri), corectând ușor direcția la fiecare pas</p>
-  </div>
-
-  <script>
-  (function(){
-    var canvas = document.getElementById('lineSim');
-    if(!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var W = 600, H = 280;
-    var t = 0;
-
-    function pathY(x){
-      return 140 + Math.sin(x/70)*70;
-    }
-
-    var robot = { x: 20, targetOffset: 0 };
-
-    function update(){
-      robot.x += 1.6;
-      if(robot.x > W+20) robot.x = -20;
-      t += 0.02;
-    }
-
-    function draw(){
-      ctx.clearRect(0,0,W,H);
-      ctx.strokeStyle = 'rgba(139,92,246,0.06)';
-      for(var gx=0; gx<W; gx+=30){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke(); }
-
-      // path (line to follow)
-      ctx.strokeStyle = '#4a4a5c';
-      ctx.lineWidth = 8;
-      ctx.lineCap = 'round';
-      ctx.beginPath();
-      for(var x=0; x<=W; x+=4){
-        var y = pathY(x);
-        if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-      }
-      ctx.stroke();
-
-      // robot position (small jitter to show correction)
-      var idealY = pathY(robot.x);
-      var jitter = Math.sin(robot.x/18)*4;
-      var ry = idealY + jitter;
-
-      // sensor dots
-      ctx.fillStyle = '#FFB020';
-      [-10,0,10].forEach(function(off){
-        ctx.beginPath();
-        ctx.arc(robot.x, ry+off*0.15+ (off), 2.5, 0, Math.PI*2);
-        ctx.fill();
-      });
-
-      // robot body
-      ctx.fillStyle = '#8B5CF6';
-      ctx.fillRect(robot.x-14, ry-10, 28, 20);
-      ctx.fillStyle = '#0a0a10';
-      ctx.fillRect(robot.x-4, ry-6, 8, 12);
-
-      ctx.fillStyle = '#9294A8';
-      ctx.font = '11px monospace';
-      ctx.fillText('corecție: ' + (jitter>0 ? 'dreapta' : 'stânga'), 12, H-14);
-    }
-
-    function loop(){
-      update();
-      draw();
-      requestAnimationFrame(loop);
-    }
-    loop();
-  })();
-  </script>
+  <h2>Limitările reale ale tehnologiei</h2>
+  <p>Viziunea computerizată poate fi păcălită de modificări minore, imperceptibile pentru ochiul uman. Performanța depinde direct de calitatea și diversitatea datelor de antrenare.</p>
 
   <h2>Concluzie</h2>
-  <p>Robotul cu urmărire de linie reutilizează majoritatea componentelor deja cumpărate, adaugă un singur senzor nou, dar introduce un concept fundamental care va rămâne util în orice proiect mai avansat.</p>
+  <p>Viziunea computerizată transformă o grilă de numere într-o înțelegere structurată a unei imagini, prin straturi succesive de la tipare simple la recunoaștere completă. Mecanismul rămâne recunoaștere statistică a tiparelor, nu percepție vizuală în sensul uman.</p>
 
   
   <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--line);">
     <p style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:14px;">Articole conexe</p>
     <ul style="list-style:none; padding:0; margin:0;">
-    <li style="margin-bottom:8px;"><a href="primul-robot-arduino.html">Primul tău robot cu Arduino</a></li>
-    <li style="margin-bottom:8px;"><a href="arduino-vs-raspberry-pi-vs-esp32.html">Arduino vs Raspberry Pi vs ESP32</a></li>
+    <li style="margin-bottom:8px;"><a href="cum-functioneaza-modelele-de-limbaj-llm.html">Cum funcționează modelele de limbaj mari</a></li>
+    <li style="margin-bottom:8px;"><a href="machine-learning-vs-deep-learning.html">Machine Learning vs Deep Learning</a></li>
     <li style="margin-bottom:8px;"><a href="perceptie-robotica-senzori.html">Cum văd roboții mobili obstacolele</a></li>
     </ul>
   </div>
   <div class="next">
-    <a href="aplicatii-ai-viata-cotidiana.html">→ Următorul articol: 5 aplicații reale ale AI-ului în viața cotidiană</a>
+    <a href="ghid-cumparare-kit-arduino.html">→ Următorul articol: Ghid de cumpărare — kit Arduino</a>
   </div>
 </main>
 

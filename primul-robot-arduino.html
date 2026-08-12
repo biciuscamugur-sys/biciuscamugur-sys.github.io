@@ -127,6 +127,128 @@ body{ transition: background-color .25s ease, color .25s ease; }
     <li><strong>Senzorul nu detectează corect</strong> → verifică dacă pinii Trig/Echo sunt conectați corect</li>
   </ul>
 
+  <h2>Vezi robotul „în acțiune" — simulare interactivă</h2>
+  <p>Înainte să construiești robotul fizic, iată o simulare vizuală a comportamentului lui — exact logica descrisă mai sus, animată în timp real.</p>
+
+  <div style="background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px; margin:20px 0 32px;">
+    <canvas id="robotSim" width="600" height="280" style="width:100%; height:auto; display:block; background:#0a0a10; border-radius:6px;"></canvas>
+    <p style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted); margin-top:10px; text-align:center;">Simulare: robotul avansează, senzorul (raza violet) detectează obstacolul, robotul dă înapoi și se rotește</p>
+  </div>
+
+  <script>
+  (function(){
+    var canvas = document.getElementById('robotSim');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W = 600, H = 280;
+
+    var obstacles = [{x:420, y:60, w:20, h:160}, {x:150, y:220, w:120, h:16}];
+
+    var robot = { x:60, y:130, angle:0, state:'forward', timer:0, speed:1.6 };
+
+    function resetIfOffscreen(){
+      if(robot.x > W+30 || robot.x < -30 || robot.y > H+30 || robot.y < -30){
+        robot.x = 60; robot.y = 130; robot.angle = 0; robot.state='forward'; robot.timer=0;
+      }
+    }
+
+    function distanceToObstacle(){
+      var rx = robot.x + Math.cos(robot.angle)*20;
+      var ry = robot.y + Math.sin(robot.angle)*20;
+      var minDist = 999;
+      for(var i=0;i<obstacles.length;i++){
+        var o = obstacles[i];
+        for(var step=0; step<80; step+=4){
+          var px = rx + Math.cos(robot.angle)*step;
+          var py = ry + Math.sin(robot.angle)*step;
+          if(px > o.x && px < o.x+o.w && py > o.y && py < o.y+o.h){
+            if(step < minDist) minDist = step;
+            break;
+          }
+        }
+      }
+      return minDist;
+    }
+
+    function update(){
+      if(robot.state === 'forward'){
+        var d = distanceToObstacle();
+        if(d < 45){
+          robot.state = 'backward';
+          robot.timer = 25;
+        } else {
+          robot.x += Math.cos(robot.angle)*robot.speed;
+          robot.y += Math.sin(robot.angle)*robot.speed;
+        }
+      } else if(robot.state === 'backward'){
+        robot.x -= Math.cos(robot.angle)*robot.speed*0.8;
+        robot.y -= Math.sin(robot.angle)*robot.speed*0.8;
+        robot.timer--;
+        if(robot.timer <= 0){ robot.state = 'turning'; robot.timer = 30; }
+      } else if(robot.state === 'turning'){
+        robot.angle += 0.07;
+        robot.timer--;
+        if(robot.timer <= 0){ robot.state = 'forward'; }
+      }
+      resetIfOffscreen();
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      // grid
+      ctx.strokeStyle = 'rgba(139,92,246,0.08)';
+      ctx.lineWidth = 1;
+      for(var gx=0; gx<W; gx+=30){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke(); }
+      for(var gy=0; gy<H; gy+=30){ ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke(); }
+
+      // obstacles
+      ctx.fillStyle = '#292A38';
+      ctx.strokeStyle = '#FFB020';
+      ctx.lineWidth = 1.5;
+      obstacles.forEach(function(o){
+        ctx.fillRect(o.x, o.y, o.w, o.h);
+        ctx.strokeRect(o.x, o.y, o.w, o.h);
+      });
+
+      // sensor ray (only visible when close / forward)
+      if(robot.state === 'forward'){
+        var d = distanceToObstacle();
+        var rayLen = Math.min(d, 80);
+        var alpha = d < 60 ? 0.9 : 0.25;
+        ctx.strokeStyle = 'rgba(139,92,246,' + alpha + ')';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(robot.x + Math.cos(robot.angle)*20, robot.y + Math.sin(robot.angle)*20);
+        ctx.lineTo(robot.x + Math.cos(robot.angle)*(20+rayLen), robot.y + Math.sin(robot.angle)*(20+rayLen));
+        ctx.stroke();
+      }
+
+      // robot body
+      ctx.save();
+      ctx.translate(robot.x, robot.y);
+      ctx.rotate(robot.angle);
+      ctx.fillStyle = robot.state === 'backward' ? '#FFB020' : '#8B5CF6';
+      ctx.fillRect(-16, -12, 32, 24);
+      ctx.fillStyle = '#0a0a10';
+      ctx.fillRect(8, -8, 8, 16);
+      ctx.restore();
+
+      // state label
+      ctx.fillStyle = '#9294A8';
+      ctx.font = '11px monospace';
+      var label = robot.state === 'forward' ? 'ÎNAINTE' : (robot.state === 'backward' ? 'ÎNAPOI' : 'ROTIRE');
+      ctx.fillText('stare: ' + label, 12, H-14);
+    }
+
+    function loop(){
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+  </script>
+
   <h2>Ce urmează</h2>
   <p>Odată ce ai robotul de bază funcțional, poți adăuga: control prin Bluetooth de pe telefon, o cameră mică pentru urmărire de linie, sau senzori suplimentari pentru navigare mai complexă.</p>
 

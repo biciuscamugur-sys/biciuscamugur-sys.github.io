@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Al doilea robot: urmărire de linie — SINAPSA</title>
+<title>Ghid de cumpărare: kit Arduino — SINAPSA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -49,126 +49,52 @@ body{ transition: background-color .25s ease, color .25s ease; }
 </header>
 
 <main class="wrap">
-  <span class="card-tag">Proiecte DIY</span>
-  <h1>Al doilea tău robot: urmărire de linie cu Arduino</h1>
-  <p class="meta">9 min citire</p>
+  <span class="card-tag">Ghid · Cumpărare</span>
+  <h1>Ghid de cumpărare: ce accesorii îți trebuie de fapt pentru primul kit Arduino</h1>
+  <p class="meta">7 min citire</p>
 
   <div style="width:100%; height:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; margin-bottom:32px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
     <svg width="200" height="140" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 20 120 Q 80 40 100 70 Q 120 100 180 30" fill="none" stroke="#292A38" stroke-width="6" stroke-linecap="round"/>
-      <rect x="88" y="60" width="24" height="20" rx="3" fill="none" stroke="#8B5CF6" stroke-width="2"/>
-      <circle cx="94" cy="82" r="3" fill="#FFB020"/><circle cx="100" cy="82" r="3" fill="#FFB020"/><circle cx="106" cy="82" r="3" fill="#FFB020"/>
+      <rect x="60" y="50" width="80" height="60" rx="4" fill="none" stroke="#8B5CF6" stroke-width="2"/>
+      <line x1="60" y1="65" x2="140" y2="65" stroke="#8B5CF6" stroke-width="1"/>
+      <circle cx="100" cy="35" r="4" fill="#FFB020"/>
+      <line x1="100" y1="39" x2="100" y2="50" stroke="#FFB020" stroke-width="1.5"/>
+      <text x="100" y="85" font-family="monospace" font-size="11" fill="#8B5CF6" text-anchor="middle">KIT</text>
+      <path d="M 100 90 L 100 100" stroke="#8B5CF6" stroke-width="1"/>
     </svg>
   </div>
 
-  <p>Dacă ai construit deja robotul din primul nostru tutorial (cel care evită obstacole), ești pregătit pentru următorul pas natural: un robot care <strong>urmărește o linie trasată pe podea</strong>, un proiect clasic în robotică.</p>
+  <p>Ai citit tutorialul nostru de bază și vrei să treci la treabă — dar magazinele online au zeci de „kituri Arduino" diferite, cu prețuri de la 40 la 400 de lei. Acest ghid te ajută să nu cumperi nici prea puțin, nici inutil de mult.</p>
 
-  <h2>De ce acest proiect e pasul logic următor</h2>
-  <p>Robotul cu evitare de obstacole ți-a arătat cum să controlezi motoare și să citești un senzor. Robotul cu urmărire de linie adaugă un concept nou, esențial în robotică: <strong>controlul proporțional</strong> — ajustarea continuă a comportamentului robotului, nu doar reacții de tip „da/nu".</p>
-
-  <h2>Ce cumperi în plus față de primul proiect</h2>
-  <p>Poți refolosi șasiul, motoarele și driverul L298N din primul robot. În plus, ai nevoie de un modul senzor de linie cu infraroșu (3-5 senzori pe o singură placă), sub 25 de lei.</p>
-
-  <h2>Cum funcționează senzorul de linie</h2>
-  <p>Fiecare senzor infraroșu emite lumină și măsoară cât se reflectă înapoi. O suprafață albă reflectă mult, o linie neagră reflectă puțin. Cu mai mulți senzori, robotul poate determina de care parte se află linia față de centrul lui.</p>
-
-  <h2>Logica de bază a urmăririi</h2>
-  <p>Dacă linia e detectată de senzorul din centru, robotul merge drept. Dacă linia „alunecă" spre stânga, robotul virează ușor la stânga, ca să revină la centru. Invers pentru dreapta.</p>
-  <pre style="background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:16px 18px; overflow-x:auto; margin:16px 0 24px; font-family:monospace; font-size:13px; color:var(--signal);">Cât timp robotul funcționează:
-  Citește toți senzorii de linie
-  Dacă centrul detectează linia: Mergi drept
-  Dacă stânga detectează linia: Virează ușor la stânga
-  Dacă dreapta detectează linia: Virează ușor la dreapta</pre>
-
-  <h2>De ce „controlul proporțional" contează</h2>
-  <p>O abordare simplistă face robotul să zigzag-eze vizibil. O abordare mai avansată — control <strong>PID</strong> — ajustează intensitatea virajului proporțional cu distanța liniei de centru, rezultând o mișcare mult mai lină. Pentru un al doilea proiect, o versiune simplificată e suficientă.</p>
-
-  <h2>Probleme comune și soluții</h2>
+  <h2>Ce conține un kit de bază, corect pentru primul proiect</h2>
   <ul>
-    <li><strong>Robotul pierde linia în curbe</strong> → mărește viteza de reacție sau redu viteza generală</li>
-    <li><strong>Robotul „tremură"</strong> → ai nevoie de tranziție mai gradată, nu comenzi bruște</li>
-    <li><strong>Senzorii nu disting linia</strong> → verifică distanța senzor-podea (optim 3-5mm)</li>
+    <li><strong>1× placă Arduino Uno</strong> (sau clonă compatibilă)</li>
+    <li><strong>1× șasiu robot cu 2 motoare</strong></li>
+    <li><strong>1× driver de motoare L298N</strong></li>
+    <li><strong>1× senzor ultrasonic HC-SR04</strong></li>
+    <li><strong>1× suport baterii 4×AA</strong></li>
+    <li><strong>Fire jumper</strong> (minim 20-30 bucăți)</li>
   </ul>
+  <p>Acest set complet costă, cumpărat separat, undeva între 60-120 de lei.</p>
 
-  <h2>Vezi robotul „în acțiune" — simulare interactivă</h2>
-  <p>O simulare vizuală a logicii descrise mai sus: robotul urmărește traseul, corectând direcția când „alunecă" de pe linie.</p>
+  <h2>Original vs. clonă — contează cu adevărat?</h2>
+  <p>Pentru un începător, <strong>nu contează semnificativ</strong>. O clonă Arduino Uno costă adesea jumătate din prețul plăcii originale, cu performanțe identice pentru proiecte hobby. Dacă bugetul e strâns, o clonă e o alegere perfect rezonabilă.</p>
 
-  <div style="background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px; margin:20px 0 32px;">
-    <canvas id="lineSim" width="600" height="280" style="width:100%; height:auto; display:block; background:#0a0a10; border-radius:6px;"></canvas>
-    <p style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted); margin-top:10px; text-align:center;">Simulare: robotul urmărește traseul (linia gri), corectând ușor direcția la fiecare pas</p>
-  </div>
+  <h2>Kituri „all-in-one" — merită banii în plus?</h2>
+  <p><strong>Merită dacă:</strong> preferi să nu cauți fiecare componentă separat, vrei o cutie organizată, prețul total nu depășește cu mult suma componentelor individuale.</p>
+  <p><strong>Nu merită dacă:</strong> kitul include mult mai multe componente decât ai nevoie, sau prețul e semnificativ mai mare decât cumpărarea separată.</p>
 
-  <script>
-  (function(){
-    var canvas = document.getElementById('lineSim');
-    if(!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var W = 600, H = 280;
-    var t = 0;
+  <h2>Accesorii utile, dar NU esențiale pentru început</h2>
+  <p>Breadboard, multimetru, cutie de organizare — utile pe termen lung, dar nu obligatorii pentru robotul de bază.</p>
 
-    function pathY(x){
-      return 140 + Math.sin(x/70)*70;
-    }
+  <h2>Ce să eviți la prima cumpărare</h2>
+  <p><strong>Kituri foarte ieftine, fără reviews</strong> — componentele slabe dau rezultate inconsistente. <strong>Arduino Mega pentru primul proiect</strong> — inutil de scump și complex pentru un început simplu.</p>
 
-    var robot = { x: 20, targetOffset: 0 };
-
-    function update(){
-      robot.x += 1.6;
-      if(robot.x > W+20) robot.x = -20;
-      t += 0.02;
-    }
-
-    function draw(){
-      ctx.clearRect(0,0,W,H);
-      ctx.strokeStyle = 'rgba(139,92,246,0.06)';
-      for(var gx=0; gx<W; gx+=30){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke(); }
-
-      // path (line to follow)
-      ctx.strokeStyle = '#4a4a5c';
-      ctx.lineWidth = 8;
-      ctx.lineCap = 'round';
-      ctx.beginPath();
-      for(var x=0; x<=W; x+=4){
-        var y = pathY(x);
-        if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-      }
-      ctx.stroke();
-
-      // robot position (small jitter to show correction)
-      var idealY = pathY(robot.x);
-      var jitter = Math.sin(robot.x/18)*4;
-      var ry = idealY + jitter;
-
-      // sensor dots
-      ctx.fillStyle = '#FFB020';
-      [-10,0,10].forEach(function(off){
-        ctx.beginPath();
-        ctx.arc(robot.x, ry+off*0.15+ (off), 2.5, 0, Math.PI*2);
-        ctx.fill();
-      });
-
-      // robot body
-      ctx.fillStyle = '#8B5CF6';
-      ctx.fillRect(robot.x-14, ry-10, 28, 20);
-      ctx.fillStyle = '#0a0a10';
-      ctx.fillRect(robot.x-4, ry-6, 8, 12);
-
-      ctx.fillStyle = '#9294A8';
-      ctx.font = '11px monospace';
-      ctx.fillText('corecție: ' + (jitter>0 ? 'dreapta' : 'stânga'), 12, H-14);
-    }
-
-    function loop(){
-      update();
-      draw();
-      requestAnimationFrame(loop);
-    }
-    loop();
-  })();
-  </script>
+  <h2>O recomandare practică de buget</h2>
+  <p>Cumpără componentele individual, respectând lista de mai sus. Vei cheltui probabil sub 100 de lei, suficient pentru primul robot, plus senzorul de linie pentru al doilea proiect.</p>
 
   <h2>Concluzie</h2>
-  <p>Robotul cu urmărire de linie reutilizează majoritatea componentelor deja cumpărate, adaugă un singur senzor nou, dar introduce un concept fundamental care va rămâne util în orice proiect mai avansat.</p>
+  <p>Pentru primul tău proiect Arduino, nu ai nevoie de kit-ul cel mai scump din magazin — ai nevoie exact de componentele listate mai sus, de la un furnizor cu recenzii decente.</p>
 
   
   <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--line);">
@@ -176,11 +102,11 @@ body{ transition: background-color .25s ease, color .25s ease; }
     <ul style="list-style:none; padding:0; margin:0;">
     <li style="margin-bottom:8px;"><a href="primul-robot-arduino.html">Primul tău robot cu Arduino</a></li>
     <li style="margin-bottom:8px;"><a href="arduino-vs-raspberry-pi-vs-esp32.html">Arduino vs Raspberry Pi vs ESP32</a></li>
-    <li style="margin-bottom:8px;"><a href="perceptie-robotica-senzori.html">Cum văd roboții mobili obstacolele</a></li>
+    <li style="margin-bottom:8px;"><a href="robot-urmarire-linie-arduino.html">Al doilea robot: urmărire de linie</a></li>
     </ul>
   </div>
   <div class="next">
-    <a href="aplicatii-ai-viata-cotidiana.html">→ Următorul articol: 5 aplicații reale ale AI-ului în viața cotidiană</a>
+    <a href="viziunea-computerizata-cum-vede-un-calculator.html">→ Înapoi: Viziunea computerizată</a>
   </div>
 </main>
 
