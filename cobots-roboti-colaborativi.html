@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cobots: roboții colaborativi — SINAPSA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0D0E14; --surface:#15161F; --line:#292A38; --text:#E9E9F0; --text-muted:#9294A8; --accent:#8B5CF6; --signal:#FFB020; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; line-height:1.75; }
+  h1,h2{ font-family:'Space Grotesk', sans-serif; }
+  a{ color:var(--accent); text-decoration:none; } a:hover{ text-decoration:underline; }
+  .wrap{ max-width:720px; margin:0 auto; padding:0 24px; }
+  header{ border-bottom:1px solid var(--line); padding:18px 0; margin-bottom:56px; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; max-width:720px; margin:0 auto; padding:0 24px; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; }
+  .logo-dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .back{ font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--text-muted); }
+  main{ padding:0 0 100px; }
+  .card-tag{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.04em; display:block; margin-bottom:16px; }
+  h1{ font-size:34px; margin-bottom:16px; line-height:1.2; }
+  .meta{ color:var(--text-muted); font-size:13.5px; font-family:'JetBrains Mono', monospace; margin-bottom:48px; }
+  h2{ font-size:21px; margin:40px 0 14px; }
+  p{ color:var(--text-muted); font-size:16px; margin-bottom:16px; }
+  strong{ color:var(--text); }
+  footer{ border-top:1px solid var(--line); padding:32px 24px; text-align:center; color:var(--text-muted); font-size:13px; }
+  .next{ margin-top:56px; padding-top:24px; border-top:1px solid var(--line); }
+
+[data-theme="light"]{
+  --bg:#F7F7FA; --surface:#FFFFFF; --line:#E2E2EA;
+  --text:#15161F; --text-muted:#5B5D6E; --accent:#7C3AED; --signal:#B36B00;
+}
+body{ transition: background-color .25s ease, color .25s ease; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1546994471915181" crossorigin="anonymous"></script>
+</head>
+<body>
+<button id="themeToggle" aria-label="Comuta tema" style="position:fixed; top:80px; right:20px; z-index:60; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 11px; color:var(--text); cursor:pointer; font-size:14px; font-family:'JetBrains Mono', monospace;">🌙</button>
+
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo"><span class="logo-dot"></span>SINAPSA</a>
+    <a href="index.html#articole" class="back">← Toate articolele</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <span class="card-tag">Robotică · Industrie</span>
+  <h1>Cobots: roboții care lucrează alături de oameni, nu în locul lor</h1>
+  <p class="meta">7 min citire</p>
+
+  <div style="width:100%; height:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; margin-bottom:32px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+    <svg width="200" height="140" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="70" r="22" fill="none" stroke="#FFB020" stroke-width="2"/>
+      <circle cx="52" cy="63" r="2.5" fill="#FFB020"/><circle cx="68" cy="63" r="2.5" fill="#FFB020"/>
+      <path d="M 50 78 Q 60 85 70 78" fill="none" stroke="#FFB020" stroke-width="1.5"/>
+      <rect x="115" y="55" width="30" height="30" rx="4" fill="none" stroke="#8B5CF6" stroke-width="2"/>
+      <line x1="130" y1="55" x2="130" y2="40" stroke="#8B5CF6" stroke-width="2"/>
+      <circle cx="130" cy="36" r="4" fill="#8B5CF6"/>
+      <line x1="82" y1="70" x2="108" y2="70" stroke="#292A38" stroke-width="1.5" stroke-dasharray="3,3"/>
+    </svg>
+  </div>
+
+  <p>Ai citit despre roboții industriali clasici, izolați în spatele unor garduri de siguranță, prea periculoși pentru a lucra aproape de oameni. Cobots-urile schimbă complet această imagine — sunt proiectați special să colaboreze direct cu oamenii, în același spațiu de lucru.</p>
+
+  <h2>Ce înseamnă „cobot"</h2>
+  <p>Termenul vine de la „collaborative robot". Spre deosebire de un braț robotic industrial clasic, un cobot e echipat cu senzori de forță și proximitate care îi permit să detecteze contactul cu un om și să se oprească instant, sau să-și reducă viteza automat.</p>
+
+  <h2>Diferența cheie față de roboții industriali clasici</h2>
+  <p>Un robot industrial tradițional necesită o zonă de siguranță dedicată — garduri, senzori de perimetru. Un cobot e proiectat să funcționeze <strong>fără aceste bariere</strong>, direct lângă un muncitor uman, împărțind aceeași masă de lucru.</p>
+
+  <h2>Cum se realizează siguranța, tehnic</h2>
+  <ul>
+    <li><strong>Senzori de forță/cuplu</strong> în fiecare articulație, care opresc mișcarea la contact neașteptat</li>
+    <li><strong>Materiale și forme rotunjite</strong>, fără muchii ascuțite</li>
+    <li><strong>Viteze și forțe limitate</strong> prin design, nu doar prin software</li>
+  </ul>
+
+  <h2>Aplicații practice, în creștere</h2>
+  <p><strong>Asamblare de precizie</strong> — un cobot ține o piesă stabilă, în timp ce un om execută operațiuni fine. <strong>Ambalare și paletizare</strong> — sarcini repetitive, obositoare. <strong>Control de calitate colaborativ</strong> — combină precizia mecanică cu judecata umană. <strong>Laboratoare</strong> — manipulare repetitivă de eșantioane.</p>
+
+  <h2>De ce companiile mici și mijlocii preferă cobots</h2>
+  <p>Roboții industriali clasici necesită investiții mari în infrastructură de siguranță. Un cobot poate fi instalat direct într-un spațiu existent, cu modificări minime, reducând semnificativ bariera de intrare în automatizare.</p>
+
+  <h2>Limitările reale</h2>
+  <p>Cobots-urile sunt, de regulă, mai lente și mai puțin puternice decât roboții industriali clasici — compromisul necesar pentru siguranța colaborării directe cu oamenii.</p>
+
+  <h2>Concluzie</h2>
+  <p>Cobots-urile reprezintă o schimbare de paradigmă — nu înlocuirea muncii umane, ci o colaborare directă, sigură, între forța mecanică a unui robot și judecata adaptabilă a unui om.</p>
+
+  
+  <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--line);">
+    <p style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:14px;">Articole conexe</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+    <li style="margin-bottom:8px;"><a href="robotica-industriala-romania.html">Roboții din fabricile românești</a></li>
+    <li style="margin-bottom:8px;"><a href="mituri-despre-roboti.html">5 mituri despre roboți</a></li>
+    <li style="margin-bottom:8px;"><a href="cariere-robotica-ai.html">5 cariere în robotică și AI</a></li>
+    </ul>
+  </div>
+  <div class="next">
+    <a href="prompt-engineering-cum-vorbesti-cu-ai.html">→ Următorul articol: Prompt engineering — cum vorbești cu un AI</a>
+  </div>
+</main>
+
+<footer>© 2026 SINAPSA — <a href="index.html">înapoi la site</a></footer>
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ERBPS9SJ3Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-ERBPS9SJ3Q");
+</script>
+
+<!-- Formspree Formbutton -->
+<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+  window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+  formbutton("create", {
+    action: "https://formspree.io/f/xrenngnr",
+    title: "Ai o intrebare?",
+    fields: [
+      { type: "text", label: "Nume:", name: "nume", placeholder: "Numele tau" },
+      { type: "email", label: "Email:", name: "email", required: true, placeholder: "adresa.ta@email.com" },
+      { type: "textarea", label: "Mesaj:", name: "message", placeholder: "Cu ce te putem ajuta?" },
+      { type: "submit" }
+    ],
+    styles: { title: { backgroundColor: "#8B5CF6" }, button: { backgroundColor: "#8B5CF6" } }
+  });
+</script>
+
+
+<button id="backToTop" aria-label="Inapoi sus" style="position:fixed; bottom:24px; left:24px; width:44px; height:44px; border-radius:50%; background:var(--surface); border:1px solid var(--line); color:var(--text); font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.35);">↑</button>
+<script>
+  var backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  backToTopBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var themeToggle = document.getElementById('themeToggle');
+  var savedTheme = localStorage.getItem('sinapsa-theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme','light');
+    if (themeToggle) themeToggle.textContent = '☀️';
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('sinapsa-theme','dark');
+      } else {
+        document.documentElement.setAttribute('data-theme','light');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('sinapsa-theme','light');
+      }
+    });
+  }
+</script>
+</body>
+</html>
