@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primul tău robot cu Arduino — pas cu pas — SINAPSA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0D0E14; --surface:#15161F; --line:#292A38; --text:#E9E9F0; --text-muted:#9294A8; --accent:#8B5CF6; --signal:#FFB020; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; line-height:1.75; }
+  h1,h2{ font-family:'Space Grotesk', sans-serif; }
+  a{ color:var(--accent); text-decoration:none; } a:hover{ text-decoration:underline; }
+  .wrap{ max-width:720px; margin:0 auto; padding:0 24px; }
+  header{ border-bottom:1px solid var(--line); padding:18px 0; margin-bottom:56px; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; max-width:720px; margin:0 auto; padding:0 24px; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; }
+  .logo-dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .back{ font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--text-muted); }
+  main{ padding:0 0 100px; }
+  .card-tag{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.04em; display:block; margin-bottom:16px; }
+  h1{ font-size:34px; margin-bottom:16px; line-height:1.2; }
+  .meta{ color:var(--text-muted); font-size:13.5px; font-family:'JetBrains Mono', monospace; margin-bottom:48px; }
+  h2{ font-size:21px; margin:40px 0 14px; }
+  p{ color:var(--text-muted); font-size:16px; margin-bottom:16px; }
+  ul, ol{ padding-left:22px; margin-bottom:16px; color:var(--text-muted); font-size:16px; }
+  li{ margin-bottom:6px; }
+  strong{ color:var(--text); }
+  pre{ background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 20px; overflow-x:auto; margin:16px 0 24px; }
+  code{ font-family:'JetBrains Mono', monospace; font-size:13.5px; color:var(--signal); }
+  footer{ border-top:1px solid var(--line); padding:32px 24px; text-align:center; color:var(--text-muted); font-size:13px; }
+  .next{ margin-top:56px; padding-top:24px; border-top:1px solid var(--line); }
+
+[data-theme="light"]{
+  --bg:#F7F7FA; --surface:#FFFFFF; --line:#E2E2EA;
+  --text:#15161F; --text-muted:#5B5D6E; --accent:#7C3AED; --signal:#B36B00;
+}
+body{ transition: background-color .25s ease, color .25s ease; }
+</style>
+<!-- Google Analytics (GA4) -- inlocuieste G-ERBPS9SJ3Q cu ID-ul tau real, primit de la analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ERBPS9SJ3Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-ERBPS9SJ3Q");
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1546994471915181" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+<meta property="og:title" content="Primul tău robot cu Arduino — pas cu pas — SINAPSA">
+<meta property="og:description" content="9 min citire">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://biciuscamugur-sys.github.io/primul-robot-arduino.html">
+<meta property="og:site_name" content="SINAPSA">
+<meta property="og:locale" content="ro_RO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Primul tău robot cu Arduino — pas cu pas — SINAPSA">
+<meta name="twitter:description" content="9 min citire">
+</head>
+<body>
+<button id="themeToggle" aria-label="Comuta tema" style="position:fixed; top:80px; right:20px; z-index:60; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 11px; color:var(--text); cursor:pointer; font-size:14px; font-family:'JetBrains Mono', monospace;">🌙</button>
+
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo"><span class="logo-dot"></span>SINAPSA</a>
+    <a href="index.html#articole" class="back">← Toate articolele</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <span class="card-tag">Proiecte DIY</span>
+  <h1>Primul tău robot cu Arduino — pas cu pas</h1>
+  <p class="meta">9 min citire</p>
+
+  <div style="width:100%; height:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; margin-bottom:32px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+    <svg width="200" height="140" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+      <rect x="55" y="45" width="90" height="55" rx="6" fill="#15161F" stroke="#8B5CF6" stroke-width="1.5"/>
+      <rect x="65" y="55" width="24" height="16" rx="2" fill="#8B5CF6" opacity="0.6"/>
+      <circle cx="125" cy="60" r="5" fill="#FFB020"/>
+      <g stroke="#8B5CF6" stroke-width="1"><line x1="70" y1="80" x2="70" y2="90"/><line x1="85" y1="80" x2="85" y2="90"/>
+      <line x1="100" y1="80" x2="100" y2="90"/><line x1="115" y1="80" x2="115" y2="90"/></g>
+      <circle cx="75" cy="115" r="15" fill="none" stroke="#8B5CF6" stroke-width="2"/>
+      <circle cx="125" cy="115" r="15" fill="none" stroke="#8B5CF6" stroke-width="2"/>
+      <line x1="90" y1="100" x2="110" y2="100" stroke="#8B5CF6" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <p>Nu ai nevoie de studii de inginerie ca să construiești un robot funcțional. Cu un buget de sub 150 de lei și un weekend liber, poți construi un robot mobil simplu, care evită obstacolele singur.</p>
+
+  <h2>Ce cumperi (lista de componente)</h2>
+  <ul>
+    <li>1× placă <strong>Arduino Uno</strong> (sau o clonă compatibilă, mai ieftină)</li>
+    <li>1× șasiu de robot cu 2 roți motoare (kit, cu tot cu motoare)</li>
+    <li>1× driver de motoare <strong>L298N</strong></li>
+    <li>1× senzor ultrasonic <strong>HC-SR04</strong></li>
+    <li>1× suport pentru 4 baterii AA + baterii</li>
+    <li>Fire de conexiune (jumper wires) tată-tată și tată-mamă</li>
+  </ul>
+  <p>Toate aceste componente se găsesc împreună, ca „kit robot pentru începători", pe site-uri românești de electronică sau pe platforme internaționale.</p>
+
+  <h2>Pasul 1 — Montezi șasiul</h2>
+  <p>Fixezi cele două motoare pe șasiu conform instrucțiunilor kit-ului. Atașezi roțile pe axul motoarelor.</p>
+
+  <h2>Pasul 2 — Conectezi driverul de motoare</h2>
+  <p>Driverul L298N stă între Arduino și motoare — Arduino nu poate alimenta motoarele direct, necesită mai mult curent decât poate oferi.</p>
+  <ul>
+    <li>Motoarele se conectează la ieșirile driverului (OUT1-OUT4)</li>
+    <li>Driverul se conectează la Arduino pe 4 pini digitali (ex: 5, 6, 9, 10)</li>
+    <li>Bateria alimentează driverul, nu direct Arduino</li>
+  </ul>
+
+  <h2>Pasul 3 — Montezi senzorul ultrasonic</h2>
+  <p>Senzorul HC-SR04 se montează în față, orientat înainte. Are 4 pini: VCC, GND, Trig, Echo — Trig și Echo se conectează la doi pini digitali de pe Arduino (ex: 7 și 8).</p>
+
+  <h2>Pasul 4 — Încarci codul</h2>
+  <p>Codul de bază face următoarele: robotul avansează, senzorul măsoară constant distanța până la obstacol, iar când distanța scade sub un prag, robotul oprește, dă înapoi puțin, și se rotește înainte să continue.</p>
+  <pre><code>Cât timp robotul funcționează:
+  Măsoară distanța cu senzorul
+  Dacă distanța > 15 cm:
+    Mergi înainte
+  Altfel:
+    Oprește
+    Dă înapoi 0.5 secunde
+    Rotește-te 90 de grade</code></pre>
+  <p>Codul complet, în limbaj Arduino (C++), poate fi găsit ușor căutând „Arduino obstacle avoidance robot HC-SR04 L298N" — există zeci de variante open-source verificate de comunitate.</p>
+
+  <h2>Pasul 5 — Testezi</h2>
+  <p>Pui robotul pe podea, într-o cameră cu câteva obstacole. Ar trebui să se miște înainte, să detecteze obstacolele și să se rotească pentru a le evita.</p>
+
+  <h2>Probleme comune și soluții</h2>
+  <ul>
+    <li><strong>Robotul nu se mișcă deloc</strong> → verifică polaritatea bateriilor și conexiunile driverului</li>
+    <li><strong>Motoarele se învârt în direcții greșite</strong> → inversează firele de pe unul dintre motoare</li>
+    <li><strong>Senzorul nu detectează corect</strong> → verifică dacă pinii Trig/Echo sunt conectați corect</li>
+  </ul>
+
+  <h2>Vezi robotul „în acțiune" — simulare interactivă</h2>
+  <p>Înainte să construiești robotul fizic, iată o simulare vizuală a comportamentului lui — exact logica descrisă mai sus, animată în timp real.</p>
+
+  <div style="background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px; margin:20px 0 32px;">
+    <canvas id="robotSim" width="600" height="280" style="width:100%; height:auto; display:block; background:#0a0a10; border-radius:6px;"></canvas>
+    <p style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted); margin-top:10px; text-align:center;">Simulare: robotul avansează, senzorul (raza violet) detectează obstacolul, robotul dă înapoi și se rotește</p>
+  </div>
+
+  <script>
+  (function(){
+    var canvas = document.getElementById('robotSim');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W = 600, H = 280;
+
+    var obstacles = [{x:420, y:60, w:20, h:160}, {x:150, y:220, w:120, h:16}];
+
+    var robot = { x:60, y:130, angle:0, state:'forward', timer:0, speed:1.6 };
+
+    function resetIfOffscreen(){
+      if(robot.x > W+30 || robot.x < -30 || robot.y > H+30 || robot.y < -30){
+        robot.x = 60; robot.y = 130; robot.angle = 0; robot.state='forward'; robot.timer=0;
+      }
+    }
+
+    function distanceToObstacle(){
+      var rx = robot.x + Math.cos(robot.angle)*20;
+      var ry = robot.y + Math.sin(robot.angle)*20;
+      var minDist = 999;
+      for(var i=0;i<obstacles.length;i++){
+        var o = obstacles[i];
+        for(var step=0; step<80; step+=4){
+          var px = rx + Math.cos(robot.angle)*step;
+          var py = ry + Math.sin(robot.angle)*step;
+          if(px > o.x && px < o.x+o.w && py > o.y && py < o.y+o.h){
+            if(step < minDist) minDist = step;
+            break;
+          }
+        }
+      }
+      return minDist;
+    }
+
+    function update(){
+      if(robot.state === 'forward'){
+        var d = distanceToObstacle();
+        if(d < 45){
+          robot.state = 'backward';
+          robot.timer = 25;
+        } else {
+          robot.x += Math.cos(robot.angle)*robot.speed;
+          robot.y += Math.sin(robot.angle)*robot.speed;
+        }
+      } else if(robot.state === 'backward'){
+        robot.x -= Math.cos(robot.angle)*robot.speed*0.8;
+        robot.y -= Math.sin(robot.angle)*robot.speed*0.8;
+        robot.timer--;
+        if(robot.timer <= 0){ robot.state = 'turning'; robot.timer = 30; }
+      } else if(robot.state === 'turning'){
+        robot.angle += 0.07;
+        robot.timer--;
+        if(robot.timer <= 0){ robot.state = 'forward'; }
+      }
+      resetIfOffscreen();
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      // grid
+      ctx.strokeStyle = 'rgba(139,92,246,0.08)';
+      ctx.lineWidth = 1;
+      for(var gx=0; gx<W; gx+=30){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke(); }
+      for(var gy=0; gy<H; gy+=30){ ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke(); }
+
+      // obstacles
+      ctx.fillStyle = '#292A38';
+      ctx.strokeStyle = '#FFB020';
+      ctx.lineWidth = 1.5;
+      obstacles.forEach(function(o){
+        ctx.fillRect(o.x, o.y, o.w, o.h);
+        ctx.strokeRect(o.x, o.y, o.w, o.h);
+      });
+
+      // sensor ray (only visible when close / forward)
+      if(robot.state === 'forward'){
+        var d = distanceToObstacle();
+        var rayLen = Math.min(d, 80);
+        var alpha = d < 60 ? 0.9 : 0.25;
+        ctx.strokeStyle = 'rgba(139,92,246,' + alpha + ')';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(robot.x + Math.cos(robot.angle)*20, robot.y + Math.sin(robot.angle)*20);
+        ctx.lineTo(robot.x + Math.cos(robot.angle)*(20+rayLen), robot.y + Math.sin(robot.angle)*(20+rayLen));
+        ctx.stroke();
+      }
+
+      // robot body
+      ctx.save();
+      ctx.translate(robot.x, robot.y);
+      ctx.rotate(robot.angle);
+      ctx.fillStyle = robot.state === 'backward' ? '#FFB020' : '#8B5CF6';
+      ctx.fillRect(-16, -12, 32, 24);
+      ctx.fillStyle = '#0a0a10';
+      ctx.fillRect(8, -8, 8, 16);
+      ctx.restore();
+
+      // state label
+      ctx.fillStyle = '#9294A8';
+      ctx.font = '11px monospace';
+      var label = robot.state === 'forward' ? 'ÎNAINTE' : (robot.state === 'backward' ? 'ÎNAPOI' : 'ROTIRE');
+      ctx.fillText('stare: ' + label, 12, H-14);
+    }
+
+    function loop(){
+      update();
+      draw();
+      requestAnimationFrame(loop);
+    }
+    loop();
+  })();
+  </script>
+
+  <h2>Ce urmează</h2>
+  <p>Odată ce ai robotul de bază funcțional, poți adăuga: control prin Bluetooth de pe telefon, o cameră mică pentru urmărire de linie, sau senzori suplimentari pentru navigare mai complexă.</p>
+
+  
+  <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--line);">
+    <p style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:14px;">Articole conexe</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+    <li style="margin-bottom:8px;"><a href="robot-urmarire-linie-arduino.html">Al doilea robot: urmărire de linie</a></li>
+    <li style="margin-bottom:8px;"><a href="arduino-vs-raspberry-pi-vs-esp32.html">Arduino vs Raspberry Pi vs ESP32</a></li>
+    <li style="margin-bottom:8px;"><a href="perceptie-robotica-senzori.html">Cum văd roboții mobili obstacolele</a></li>
+    </ul>
+  </div>
+  <div class="next">
+    <a href="automatizari-ai-2026.html">→ Următorul articol: Automatizări AI care chiar economisesc timp în 2026</a>
+  </div>
+</main>
+
+<footer>© 2026 SINAPSA — <a href="index.html">înapoi la site</a></footer>
+
+<!-- Formspree Formbutton -->
+<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+  window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+  formbutton("create", {
+    action: "https://formspree.io/f/xrenngnr",
+    title: "Ai o intrebare?",
+    fields: [
+      {
+        type: "text",
+        label: "Nume:",
+        name: "nume",
+        placeholder: "Numele tau"
+      },
+      {
+        type: "email",
+        label: "Email:",
+        name: "email",
+        required: true,
+        placeholder: "adresa.ta@email.com"
+      },
+      {
+        type: "textarea",
+        label: "Mesaj:",
+        name: "message",
+        placeholder: "Cu ce te putem ajuta?"
+      },
+      { type: "submit" }
+    ],
+    styles: {
+      title: {
+        backgroundColor: "#8B5CF6"
+      },
+      button: {
+        backgroundColor: "#8B5CF6"
+      }
+    }
+  });
+</script>
+
+<button id="backToTop" aria-label="Inapoi sus" style="position:fixed; bottom:24px; left:24px; width:44px; height:44px; border-radius:50%; background:var(--surface); border:1px solid var(--line); color:var(--text); font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.35);">↑</button>
+<script>
+  var backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  backToTopBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var themeToggle = document.getElementById('themeToggle');
+  var savedTheme = localStorage.getItem('sinapsa-theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme','light');
+    if (themeToggle) themeToggle.textContent = '☀️';
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('sinapsa-theme','dark');
+      } else {
+        document.documentElement.setAttribute('data-theme','light');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('sinapsa-theme','light');
+      }
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scurtă istorie a roboticii — SINAPSA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0D0E14; --surface:#15161F; --line:#292A38; --text:#E9E9F0; --text-muted:#9294A8; --accent:#8B5CF6; --signal:#FFB020; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; line-height:1.75; }
+  h1,h2{ font-family:'Space Grotesk', sans-serif; }
+  a{ color:var(--accent); text-decoration:none; } a:hover{ text-decoration:underline; }
+  .wrap{ max-width:720px; margin:0 auto; padding:0 24px; }
+  header{ border-bottom:1px solid var(--line); padding:18px 0; margin-bottom:56px; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; max-width:720px; margin:0 auto; padding:0 24px; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; }
+  .logo-dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .back{ font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--text-muted); }
+  main{ padding:0 0 100px; }
+  .card-tag{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.04em; display:block; margin-bottom:16px; }
+  h1{ font-size:34px; margin-bottom:16px; line-height:1.2; }
+  .meta{ color:var(--text-muted); font-size:13.5px; font-family:'JetBrains Mono', monospace; margin-bottom:48px; }
+  h2{ font-size:21px; margin:40px 0 14px; }
+  p{ color:var(--text-muted); font-size:16px; margin-bottom:16px; }
+  strong{ color:var(--text); }
+  footer{ border-top:1px solid var(--line); padding:32px 24px; text-align:center; color:var(--text-muted); font-size:13px; }
+  .next{ margin-top:56px; padding-top:24px; border-top:1px solid var(--line); }
+
+[data-theme="light"]{
+  --bg:#F7F7FA; --surface:#FFFFFF; --line:#E2E2EA;
+  --text:#15161F; --text-muted:#5B5D6E; --accent:#7C3AED; --signal:#B36B00;
+}
+body{ transition: background-color .25s ease, color .25s ease; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1546994471915181" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+<meta property="og:title" content="Scurtă istorie a roboticii — SINAPSA">
+<meta property="og:description" content="7 min citire">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://biciuscamugur-sys.github.io/istoria-roboticii.html">
+<meta property="og:site_name" content="SINAPSA">
+<meta property="og:locale" content="ro_RO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Scurtă istorie a roboticii — SINAPSA">
+<meta name="twitter:description" content="7 min citire">
+</head>
+<body>
+<button id="themeToggle" aria-label="Comuta tema" style="position:fixed; top:80px; right:20px; z-index:60; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 11px; color:var(--text); cursor:pointer; font-size:14px; font-family:'JetBrains Mono', monospace;">🌙</button>
+
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo"><span class="logo-dot"></span>SINAPSA</a>
+    <a href="index.html#articole" class="back">← Toate articolele</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <span class="card-tag">Robotică · Istorie</span>
+  <h1>Scurtă istorie a roboticii: de la primele automate la roboții de azi</h1>
+  <p class="meta">7 min citire</p>
+
+  <div style="width:100%; height:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; margin-bottom:32px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+    <svg width="200" height="140" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+      <line x1="20" y1="110" x2="180" y2="110" stroke="#292A38" stroke-width="1.5"/>
+      <circle cx="35" cy="90" r="8" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>
+      <rect x="80" y="70" width="24" height="35" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>
+      <rect x="130" y="55" width="30" height="50" rx="4" fill="none" stroke="#FFB020" stroke-width="1.5"/>
+      <circle cx="145" cy="65" r="4" fill="#FFB020"/>
+      <text x="35" y="55" font-family="monospace" font-size="10" fill="#8B5CF6" text-anchor="middle">1700s</text>
+      <text x="92" y="55" font-family="monospace" font-size="10" fill="#8B5CF6" text-anchor="middle">1961</text>
+      <text x="145" y="40" font-family="monospace" font-size="10" fill="#FFB020" text-anchor="middle">azi</text>
+    </svg>
+  </div>
+
+  <p>Robotica nu a apărut brusc odată cu AI-ul modern. Are o istorie de sute de ani, cu rădăcini mult mai vechi decât și-ar imagina majoritatea oamenilor.</p>
+
+  <h2>Secolul XVIII — automatele mecanice</h2>
+  <p>Cu mult înainte de electricitate, meșteșugari precum Jacques de Vaucanson construiau <strong>automate</strong> — figurine mecanice complexe, acționate prin arcuri și angrenaje, capabile de mișcări surprinzător de elaborate. Aceste construcții erau curiozități de spectacol, dar au pus bazele ideii de „mașină care imită viața".</p>
+
+  <h2>1921 — nașterea cuvântului „robot"</h2>
+  <p>Termenul „robot" a fost inventat de scriitorul ceh Karel Čapek, în piesa de teatru <em>R.U.R.</em> Cuvântul provine din ceha „robota", care înseamnă „muncă forțată" — o etimologie care spune multe despre cum era imaginat rolul roboților încă de la început.</p>
+
+  <h2>Anii 1950-60 — primii roboți industriali reali</h2>
+  <p><strong>Unimate</strong>, creat de George Devol și Joseph Engelberger, a fost primul robot industrial folosit comercial — instalat într-o fabrică General Motors în 1961. Acesta a marcat trecerea roboticii de la ficțiune, la unealtă industrială reală.</p>
+
+  <h2>Anii 1970-80 — expansiunea industrială</h2>
+  <p>Robotica industrială s-a extins rapid în producția auto și electronică. Roboții deveneau tot mai preciși, dar rămâneau limitați la sarcini fixe, repetitive, fără nicio formă de percepție a mediului.</p>
+
+  <h2>Anii 1990-2000 — roboții „inteligenți" timpurii</h2>
+  <p>Adăugarea senzorilor și a controlerelor mai puternice a permis roboților să reacționeze la mediu. Au apărut și primii roboți destinați publicului larg — precum aspiratoarele robotizate (Roomba, lansat în 2002).</p>
+
+  <h2>Anii 2010-prezent — convergența cu inteligența artificială</h2>
+  <p>Ultimul deceniu a adus roboți care nu mai execută doar reguli fixe, ci pot fi antrenați să recunoască obiecte, să navigheze medii complexe, și să ia decizii adaptate contextului, datorită progreselor din machine learning.</p>
+
+  <h2>Concluzie</h2>
+  <p>Robotica nu e un domeniu nou — e rezultatul a peste 250 de ani de evoluție treptată. Fiecare deceniu a adăugat un strat de capacitate peste ce exista deja.</p>
+
+  
+  <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--line);">
+    <p style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:14px;">Articole conexe</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+    <li style="margin-bottom:8px;"><a href="mituri-despre-roboti.html">5 mituri despre roboți</a></li>
+    <li style="margin-bottom:8px;"><a href="robotica-industriala-romania.html">Roboții din fabricile românești</a></li>
+    <li style="margin-bottom:8px;"><a href="cariere-robotica-ai.html">5 cariere în robotică și AI</a></li>
+    </ul>
+  </div>
+  <div class="next">
+    <a href="cariere-robotica-ai.html">→ Următorul articol: 5 cariere în robotică și AI</a>
+  </div>
+</main>
+
+<footer>© 2026 SINAPSA — <a href="index.html">înapoi la site</a></footer>
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ERBPS9SJ3Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-ERBPS9SJ3Q");
+</script>
+
+<!-- Formspree Formbutton -->
+<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+  window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+  formbutton("create", {
+    action: "https://formspree.io/f/xrenngnr",
+    title: "Ai o intrebare?",
+    fields: [
+      { type: "text", label: "Nume:", name: "nume", placeholder: "Numele tau" },
+      { type: "email", label: "Email:", name: "email", required: true, placeholder: "adresa.ta@email.com" },
+      { type: "textarea", label: "Mesaj:", name: "message", placeholder: "Cu ce te putem ajuta?" },
+      { type: "submit" }
+    ],
+    styles: { title: { backgroundColor: "#8B5CF6" }, button: { backgroundColor: "#8B5CF6" } }
+  });
+</script>
+
+
+<button id="backToTop" aria-label="Inapoi sus" style="position:fixed; bottom:24px; left:24px; width:44px; height:44px; border-radius:50%; background:var(--surface); border:1px solid var(--line); color:var(--text); font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.35);">↑</button>
+<script>
+  var backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  backToTopBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var themeToggle = document.getElementById('themeToggle');
+  var savedTheme = localStorage.getItem('sinapsa-theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme','light');
+    if (themeToggle) themeToggle.textContent = '☀️';
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('sinapsa-theme','dark');
+      } else {
+        document.documentElement.setAttribute('data-theme','light');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('sinapsa-theme','light');
+      }
+    });
+  }
+</script>
+</body>
+</html>

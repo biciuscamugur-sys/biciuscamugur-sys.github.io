@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SINAPSA — Robotică & Inteligență Artificială</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0D0E14;
+    --surface: #15161F;
+    --surface-2: #1B1C28;
+    --line: #292A38;
+    --text: #E9E9F0;
+    --text-muted: #9294A8;
+    --accent: #8B5CF6;
+    --accent-soft: #8B5CF61a;
+    --signal: #FFB020;
+    --radius: 10px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family:'Space Grotesk', sans-serif; letter-spacing:-0.01em; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+
+  /* Background synapse layer */
+  #synapse-bg{
+    position:fixed; inset:0; z-index:0; opacity:0.55; pointer-events:none;
+  }
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(13,14,20,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px;
+  }
+  .logo-dot{
+    width:9px; height:9px; border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-soft);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ box-shadow:0 0 0 4px var(--accent-soft); }
+    50%{ box-shadow:0 0 0 8px var(--accent-soft); }
+  }
+  .nav-links{ display:flex; gap:32px; font-size:14px; color:var(--text-muted); }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-cta{
+    font-family:'JetBrains Mono', monospace; font-size:12.5px;
+    border:1px solid var(--line); padding:8px 16px; border-radius:6px;
+    color:var(--text); transition: border-color .2s, background .2s;
+  }
+  .nav-cta:hover{ border-color:var(--accent); background:var(--accent-soft); }
+
+  /* Hero */
+  .hero{
+    position:relative; z-index:1;
+    padding:120px 24px 100px;
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono', monospace; font-size:12.5px;
+    color:var(--signal); border:1px solid #FFB02033;
+    background:#FFB02010; padding:6px 12px; border-radius:20px;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-size:clamp(38px, 6vw, 68px);
+    font-weight:700; line-height:1.06;
+    max-width:820px; margin:0 auto 24px;
+  }
+  .hero h1 .accent{ color:var(--accent); }
+  .hero p{
+    color:var(--text-muted); font-size:18px;
+    max-width:560px; margin:0 auto 40px;
+  }
+  .hero-actions{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--accent); color:#fff; font-weight:600; font-size:15px;
+    padding:14px 26px; border-radius:8px; border:none; cursor:pointer;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 8px 24px #8B5CF640; }
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--text); font-size:15px; font-weight:500;
+    padding:14px 26px; border-radius:8px;
+    transition:border-color .15s;
+  }
+  .btn-ghost:hover{ border-color:var(--accent); }
+
+  /* Section framing */
+  section{ position:relative; z-index:1; padding:80px 24px; }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:44px; flex-wrap:wrap; gap:12px;
+    border-bottom:1px solid var(--line); padding-bottom:20px;
+  }
+  .section-head h2{ font-size:28px; font-weight:600; }
+  .section-tag{
+    font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--text-muted);
+  }
+
+  /* Article cards */
+  .grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;
+  }
+  .card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; transition: border-color .2s, transform .2s;
+    display:flex; flex-direction:column; gap:14px;
+    cursor:pointer; text-decoration:none; color:inherit;
+  }
+  .card:hover{ border-color:#8B5CF655; transform:translateY(-3px); }
+  .card-tag{
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .card h3{ font-size:18.5px; font-weight:600; line-height:1.35; }
+  .card p{ color:var(--text-muted); font-size:14.5px; flex:1; }
+  .card-meta{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted);
+    padding-top:12px; border-top:1px solid var(--line);
+  }
+
+  /* About / signal panel */
+  .about{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;
+  }
+  .about h2{ font-size:30px; margin-bottom:18px; }
+  .about p{ color:var(--text-muted); margin-bottom:16px; font-size:15.5px; }
+  .panel{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; font-family:'JetBrains Mono', monospace; font-size:13px;
+  }
+  .panel-row{
+    display:flex; justify-content:space-between; padding:11px 0;
+    border-bottom:1px solid var(--line); color:var(--text-muted);
+  }
+  .panel-row:last-child{ border-bottom:none; }
+  .panel-row span:last-child{ color:var(--text); }
+  .status-live{ color:#4ADE80; }
+  .status-live::before{ content:"●"; margin-right:6px; }
+
+  /* Newsletter */
+  .newsletter{
+    background:var(--surface); border:1px solid var(--line); border-radius:16px;
+    padding:56px; text-align:center;
+  }
+  .newsletter h2{ font-size:26px; margin-bottom:10px; }
+  .newsletter p{ color:var(--text-muted); margin-bottom:28px; }
+  .form-row{
+    display:flex; gap:10px; max-width:420px; margin:0 auto; flex-wrap:wrap; justify-content:center;
+  }
+  .form-row input{
+    flex:1; min-width:220px; background:var(--surface-2); border:1px solid var(--line);
+    border-radius:8px; padding:13px 16px; color:var(--text); font-size:14.5px;
+  }
+  .form-row input:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+  .form-row button{
+    background:var(--accent); color:#fff; border:none; border-radius:8px;
+    padding:13px 22px; font-weight:600; font-size:14.5px; cursor:pointer;
+  }
+  .form-note{ margin-top:14px; font-size:12.5px; color:var(--text-muted); }
+
+  footer{
+    position:relative; z-index:1;
+    border-top:1px solid var(--line); padding:36px 24px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+  }
+  footer, footer a{ font-size:13px; color:var(--text-muted); }
+  footer a:hover{ color:var(--text); }
+
+  @media (max-width: 860px){
+    .grid{ grid-template-columns:1fr; }
+    .about{ grid-template-columns:1fr; }
+    .nav-links{ display:none; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .logo-dot{ animation:none; }
+    #synapse-bg{ opacity:0.3; }
+  }
+
+[data-theme="light"]{
+  --bg:#F7F7FA; --surface:#FFFFFF; --line:#E2E2EA;
+  --text:#15161F; --text-muted:#5B5D6E; --accent:#7C3AED; --signal:#B36B00;
+}
+body{ transition: background-color .25s ease, color .25s ease; }
+</style>
+<!-- Google Analytics (GA4) -- inlocuieste G-ERBPS9SJ3Q cu ID-ul tau real, primit de la analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ERBPS9SJ3Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-ERBPS9SJ3Q");
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1546994471915181" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+<meta property="og:title" content="SINAPSA — Robotică & Inteligență Artificială">
+<meta property="og:description" content="Robotică, inteligență artificială și electronică, explicate simplu.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://biciuscamugur-sys.github.io/">
+<meta property="og:site_name" content="SINAPSA">
+<meta property="og:locale" content="ro_RO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SINAPSA — Robotică & Inteligență Artificială">
+<meta name="twitter:description" content="Robotică, inteligență artificială și electronică, explicate simplu.">
+</head>
+<body>
+<button id="themeToggle" aria-label="Comuta tema" style="position:fixed; top:80px; right:20px; z-index:60; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 11px; color:var(--text); cursor:pointer; font-size:14px; font-family:'JetBrains Mono', monospace;">🌙</button>
+
+
+<svg id="synapse-bg"></svg>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="logo-dot"></span>SINAPSA</div>
+    <nav class="nav-links">
+      <a href="#articole">Articole</a>
+      <a href="#despre">Despre</a>
+      <a href="#abonare">Abonare</a>
+    </nav>
+    <a href="#abonare" class="nav-cta">Abonează-te →</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow mono">● SEMNAL ACTIV — actualizări zilnice</span>
+    <h1>Rețeaua din care <span class="accent">se naște</span> viitorul robotic.</h1>
+    <p>Explicații clare despre roboți, algoritmi și mașini care învață — scrise pentru oameni curioși, nu doar pentru ingineri.</p>
+    <div class="hero-actions">
+      <a href="#articole" class="btn-primary">Citește articolele</a>
+      <a href="#despre" class="btn-ghost">Despre proiect</a>
+    </div>
+  </div>
+</section>
+
+<section id="articole">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Ultimele articole</h2>
+      <span class="section-tag mono">24 articole publicate</span>
+    </div>
+    <div class="grid">
+
+      <a href="ce-este-un-model-ai.html" class="card">
+        <span class="card-tag mono">AI · Fundamente</span>
+        <h3>Ce este de fapt un „model" de inteligență artificială?</h3>
+        <p>O explicație fără jargon a modului în care un sistem AI transformă text în răspunsuri coerente.</p>
+        <div class="card-meta"><span>4 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="perceptie-robotica-senzori.html" class="card">
+        <span class="card-tag mono">Robotică</span>
+        <h3>Cum „văd" roboții mobili obstacolele din jurul lor</h3>
+        <p>De la senzori ultrasonici la LiDAR: ghid vizual al percepției robotice pentru începători.</p>
+        <div class="card-meta"><span>6 min citire</span><span>Popular</span></div>
+      </a>
+
+      <a href="primul-robot-arduino.html" class="card">
+        <span class="card-tag mono">Proiecte DIY</span>
+        <h3>Primul tău robot cu Arduino — pas cu pas</h3>
+        <p>Componente, cod și un plan clar pentru a construi un robot simplu într-un weekend.</p>
+        <div class="card-meta"><span>9 min citire</span><span>Tutorial</span></div>
+      </a>
+
+      <a href="automatizari-ai-2026.html" class="card">
+        <span class="card-tag mono">AI · Aplicat</span>
+        <h3>Automatizări AI care chiar economisesc timp în 2026</h3>
+        <p>Cinci fluxuri de lucru testate, de la organizarea emailurilor la generarea de rapoarte.</p>
+        <div class="card-meta"><span>5 min citire</span><span>Ghid</span></div>
+      </a>
+
+      <a href="robotica-industriala-romania.html" class="card">
+        <span class="card-tag mono">Industrie</span>
+        <h3>Roboții din fabricile românești: unde suntem acum</h3>
+        <p>O privire asupra automatizării industriale locale și a companiilor care investesc în robotică.</p>
+        <div class="card-meta"><span>7 min citire</span><span>Analiză</span></div>
+      </a>
+
+      <a href="responsabilitate-algoritmica.html" class="card">
+        <span class="card-tag mono">Etică & Societate</span>
+        <h3>Cine răspunde când decide un algoritm?</h3>
+        <p>O discuție echilibrată despre responsabilitate, transparență și limitele automatizării.</p>
+        <div class="card-meta"><span>8 min citire</span><span>Opinie</span></div>
+      </a>
+
+      <a href="machine-learning-vs-deep-learning.html" class="card">
+        <span class="card-tag mono">AI · Fundamente</span>
+        <h3>Machine Learning vs Deep Learning: care e diferența reală?</h3>
+        <p>O explicație clară a distincției dintre categoria mare (ML) și ramura specializată (deep learning).</p>
+        <div class="card-meta"><span>6 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="mituri-despre-roboti.html" class="card">
+        <span class="card-tag mono">Robotică · Opinie</span>
+        <h3>5 mituri despre roboți pe care ar trebui să le lași deoparte</h3>
+        <p>De la „roboții devin conștienți" la exagerările Hollywood-ului — ce e adevărat și ce nu.</p>
+        <div class="card-meta"><span>5 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="asistenti-vocali-cum-functioneaza.html" class="card">
+        <span class="card-tag mono">AI · Aplicat</span>
+        <h3>Cum funcționează de fapt asistenții vocali?</h3>
+        <p>De la „Hei Google" până la răspuns — cei 5 pași ascunși din spatele Siri, Alexa și Google Assistant.</p>
+        <div class="card-meta"><span>6 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="istoria-roboticii.html" class="card">
+        <span class="card-tag mono">Robotică · Istorie</span>
+        <h3>Scurtă istorie a roboticii: de la automate la roboții de azi</h3>
+        <p>De la automatele mecanice din secolul XVIII, la convergența actuală cu inteligența artificială.</p>
+        <div class="card-meta"><span>7 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="cariere-robotica-ai.html" class="card">
+        <span class="card-tag mono">Cariere · Educație</span>
+        <h3>5 cariere în robotică și AI pe care poate nu le știai că există</h3>
+        <p>Nu toate joburile din domeniu cer să fii programator — iată roluri mai puțin cunoscute, dar căutate.</p>
+        <div class="card-meta"><span>6 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="dronele-robotica-zburatoare.html" class="card">
+        <span class="card-tag mono">Robotică · Aplicat</span>
+        <h3>Dronele: robotică zburătoare</h3>
+        <p>Cum reușesc dronele să zboare stabil, și de la agricultură la filmare — la ce se folosesc azi.</p>
+        <div class="card-meta"><span>7 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="internetul-lucrurilor-iot.html" class="card">
+        <span class="card-tag mono">Tehnologie · Aplicat</span>
+        <h3>Ce este Internetul Lucrurilor (IoT)?</h3>
+        <p>De la termostate inteligente la orașe conectate — cum se leagă IoT-ul de robotică și AI.</p>
+        <div class="card-meta"><span>6 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="securitate-cibernetica-de-baza.html" class="card">
+        <span class="card-tag mono">Securitate · Ghid</span>
+        <h3>Securitate cibernetică de bază</h3>
+        <p>Ce trebuie să știe orice utilizator de tehnologie, explicat simplu, fără jargon tehnic.</p>
+        <div class="card-meta"><span>7 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="arduino-vs-raspberry-pi-vs-esp32.html" class="card">
+        <span class="card-tag mono">Ghid · Comparație</span>
+        <h3>Arduino vs Raspberry Pi vs ESP32</h3>
+        <p>Care e potrivit pentru primul tău proiect? Comparație completă, cu recomandări clare pe caz de utilizare.</p>
+        <div class="card-meta"><span>10 min citire</span><span>Ghid detaliat</span></div>
+      </a>
+
+      <a href="cum-functioneaza-modelele-de-limbaj-llm.html" class="card">
+        <span class="card-tag mono">AI · Aprofundat</span>
+        <h3>Cum funcționează cu adevărat modelele de limbaj mari</h3>
+        <p>Tokenizare, atenție, antrenare — mecanismul complet din spatele ChatGPT, Claude și Gemini, explicat pas cu pas.</p>
+        <div class="card-meta"><span>11 min citire</span><span>Aprofundat</span></div>
+      </a>
+
+      <a href="robot-urmarire-linie-arduino.html" class="card">
+        <span class="card-tag mono">Proiecte DIY</span>
+        <h3>Al doilea tău robot: urmărire de linie</h3>
+        <p>Continuarea naturală a tutorialului Arduino — control proporțional, senzori de linie, primul pas spre PID.</p>
+        <div class="card-meta"><span>9 min citire</span><span>Tutorial</span></div>
+      </a>
+
+      <a href="viziunea-computerizata-cum-vede-un-calculator.html" class="card">
+        <span class="card-tag mono">AI · Aprofundat</span>
+        <h3>Viziunea computerizată: cum „vede" un calculator</h3>
+        <p>De la pixeli individuali la recunoașterea obiectelor complete — mecanismul din spatele deblocării faciale.</p>
+        <div class="card-meta"><span>8 min citire</span><span>Aprofundat</span></div>
+      </a>
+
+      <a href="ghid-cumparare-kit-arduino.html" class="card">
+        <span class="card-tag mono">Ghid · Cumpărare</span>
+        <h3>Ghid de cumpărare: kit Arduino</h3>
+        <p>Ce accesorii îți trebuie de fapt pentru primul proiect, și ce să eviți la prima cumpărare.</p>
+        <div class="card-meta"><span>7 min citire</span><span>Ghid</span></div>
+      </a>
+
+      <a href="cobots-roboti-colaborativi.html" class="card">
+        <span class="card-tag mono">Robotică · Industrie</span>
+        <h3>Cobots: roboții care lucrează alături de oameni</h3>
+        <p>Roboții colaborativi, fără garduri de siguranță — cum funcționează și de ce cresc rapid pe piață.</p>
+        <div class="card-meta"><span>7 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="prompt-engineering-cum-vorbesti-cu-ai.html" class="card">
+        <span class="card-tag mono">AI · Practic</span>
+        <h3>Prompt engineering: cum vorbești cu un AI</h3>
+        <p>Principii practice pentru a obține răspunsuri mai bune de la ChatGPT, Claude sau alte sisteme AI.</p>
+        <div class="card-meta"><span>7 min citire</span><span>Practic</span></div>
+      </a>
+
+      <a href="exoscheletele-roboti-purtati.html" class="card">
+        <span class="card-tag mono">Robotică · Aplicat</span>
+        <h3>Exoscheletele: roboții care se poartă</h3>
+        <p>Dispozitive robotice purtate pe corp — de la recuperare medicală la muncă industrială.</p>
+        <div class="card-meta"><span>7 min citire</span><span>Nou</span></div>
+      </a>
+
+      <a href="bias-algoritmic-de-ce-apare.html" class="card">
+        <span class="card-tag mono">Etică · Aprofundat</span>
+        <h3>Bias algoritmic: de ce apare</h3>
+        <p>Cum ajunge un sistem AI să fie părtinitor, fără ca nimeni să fi programat explicit discriminarea.</p>
+        <div class="card-meta"><span>8 min citire</span><span>Aprofundat</span></div>
+      </a>
+
+      <a href="aplicatii-ai-viata-cotidiana.html" class="card">
+        <span class="card-tag mono">AI · Aplicat</span>
+        <h3>5 aplicații reale ale AI-ului pe care poate nu le observi</h3>
+        <p>De la filtrul de spam la detectarea fraudei bancare — AI-ul invizibil care-ți influențează deja ziua.</p>
+        <div class="card-meta"><span>6 min citire</span><span>Nou</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="despre">
+  <div class="wrap about">
+    <div>
+      <h2>Un nod de cunoaștere, nu doar un blog.</h2>
+      <p>SINAPSA a pornit dintr-o întrebare simplă: de ce sunt majoritatea materialelor despre robotică și AI fie prea tehnice, fie superficiale? Am construit acest spațiu pentru cititorii de limbă română care vor să înțeleagă tehnologia cu adevărat — nu doar titluri senzaționale.</p>
+      <p>Publicăm articole verificate, tutoriale testate practic și analize fără agendă comercială ascunsă.</p>
+    </div>
+    <div class="panel">
+      <div class="panel-row"><span>Stare platformă</span><span class="status-live">online</span></div>
+      <div class="panel-row"><span>Articole publicate</span><span>24</span></div>
+      <div class="panel-row"><span>Categorii active</span><span>AI · Robotică · DIY · Etică</span></div>
+      <div class="panel-row"><span>Frecvență publicare</span><span>2× / săptămână</span></div>
+      <div class="panel-row"><span>Limbă</span><span>Română</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="abonare">
+  <div class="wrap">
+    <div class="newsletter">
+      <h2>Primești un articol nou, direct pe email.</h2>
+      <p>Fără spam, fără reclame excesive — doar tehnologie explicată clar, o dată pe săptămână.</p>
+      <div id="newsletter-succes" style="display:none; background:#8B5CF61a; border:1px solid var(--accent); border-radius:8px; padding:14px 18px; margin-bottom:20px; font-size:14.5px; max-width:420px; margin-left:auto; margin-right:auto;">
+        ✓ Te-ai abonat cu succes! Verifică-ți email-ul.
+      </div>
+      <form id="newsletter-form" class="form-row" action="https://formspree.io/f/xrenngnr" method="POST">
+        <input type="hidden" name="_subject" value="Abonare noua newsletter SINAPSA">
+        <input type="hidden" name="tip" value="Abonare newsletter">
+        <input type="email" name="email" placeholder="adresa.ta@email.com" aria-label="Adresă de email" required>
+        <button type="submit">Abonează-te</button>
+      </form>
+      <p class="form-note">Te poți dezabona oricând, dintr-un singur click.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  var newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var formData = new FormData(newsletterForm);
+      fetch(newsletterForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if (response.ok) {
+          document.getElementById('newsletter-succes').style.display = 'block';
+          newsletterForm.style.display = 'none';
+        }
+      });
+    });
+  }
+</script>
+
+<footer>
+  <span>© 2026 SINAPSA — construit cu curiozitate.</span>
+  <span><a href="#articole">Articole</a> · <a href="about.html">Despre</a> · <a href="privacy.html">Confidențialitate</a> · <a href="#abonare">Abonare</a></span>
+</footer>
+
+<script>
+  // Signature element: pulsing synapse network in the background
+  (function(){
+    const svgns = "http://www.w3.org/2000/svg";
+    const svg = document.getElementById('synapse-bg');
+    const W = window.innerWidth, H = document.documentElement.scrollHeight;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('preserveAspectRatio', 'none');
+
+    const count = Math.max(18, Math.floor(W / 90));
+    const nodes = [];
+    for(let i=0;i<count;i++){
+      nodes.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        r: 1.6 + Math.random()*1.8
+      });
+    }
+    // connect nearby nodes
+    const g = document.createElementNS(svgns, 'g');
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const dx = nodes[i].x-nodes[j].x, dy = nodes[i].y-nodes[j].y;
+        const dist = Math.sqrt(dx*dx+dy*dy);
+        if(dist < 260){
+          const line = document.createElementNS(svgns, 'line');
+          line.setAttribute('x1', nodes[i].x); line.setAttribute('y1', nodes[i].y);
+          line.setAttribute('x2', nodes[j].x); line.setAttribute('y2', nodes[j].y);
+          line.setAttribute('stroke', '#8B5CF6');
+          line.setAttribute('stroke-opacity', (0.12 - dist/2600).toFixed(3));
+          line.setAttribute('stroke-width', '1');
+          g.appendChild(line);
+        }
+      }
+    }
+    svg.appendChild(g);
+    nodes.forEach((n, idx) => {
+      const c = document.createElementNS(svgns, 'circle');
+      c.setAttribute('cx', n.x); c.setAttribute('cy', n.y); c.setAttribute('r', n.r);
+      c.setAttribute('fill', idx % 5 === 0 ? '#FFB020' : '#8B5CF6');
+      c.setAttribute('fill-opacity', '0.5');
+      const anim = document.createElementNS(svgns, 'animate');
+      anim.setAttribute('attributeName', 'fill-opacity');
+      anim.setAttribute('values', '0.2;0.8;0.2');
+      anim.setAttribute('dur', (3 + Math.random()*4).toFixed(1) + 's');
+      anim.setAttribute('repeatCount', 'indefinite');
+      anim.setAttribute('begin', (Math.random()*4).toFixed(1) + 's');
+      c.appendChild(anim);
+      svg.appendChild(c);
+    });
+  })();
+</script>
+
+<!-- Formspree Formbutton -->
+<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+  window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+  formbutton("create", {
+    action: "https://formspree.io/f/xrenngnr",
+    title: "Ai o intrebare?",
+    fields: [
+      {
+        type: "text",
+        label: "Nume:",
+        name: "nume",
+        placeholder: "Numele tau"
+      },
+      {
+        type: "email",
+        label: "Email:",
+        name: "email",
+        required: true,
+        placeholder: "adresa.ta@email.com"
+      },
+      {
+        type: "textarea",
+        label: "Mesaj:",
+        name: "message",
+        placeholder: "Cu ce te putem ajuta?"
+      },
+      { type: "submit" }
+    ],
+    styles: {
+      title: {
+        backgroundColor: "#8B5CF6"
+      },
+      button: {
+        backgroundColor: "#8B5CF6"
+      }
+    }
+  });
+</script>
+
+<button id="backToTop" aria-label="Inapoi sus" style="position:fixed; bottom:24px; left:24px; width:44px; height:44px; border-radius:50%; background:var(--surface); border:1px solid var(--line); color:var(--text); font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.35);">↑</button>
+<script>
+  var backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  backToTopBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var themeToggle = document.getElementById('themeToggle');
+  var savedTheme = localStorage.getItem('sinapsa-theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme','light');
+    if (themeToggle) themeToggle.textContent = '☀️';
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('sinapsa-theme','dark');
+      } else {
+        document.documentElement.setAttribute('data-theme','light');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('sinapsa-theme','light');
+      }
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viziunea computerizată: cum vede un calculator — SINAPSA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{ --bg:#0D0E14; --surface:#15161F; --line:#292A38; --text:#E9E9F0; --text-muted:#9294A8; --accent:#8B5CF6; --signal:#FFB020; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:'Inter', sans-serif; line-height:1.75; }
+  h1,h2{ font-family:'Space Grotesk', sans-serif; }
+  a{ color:var(--accent); text-decoration:none; } a:hover{ text-decoration:underline; }
+  .wrap{ max-width:720px; margin:0 auto; padding:0 24px; }
+  header{ border-bottom:1px solid var(--line); padding:18px 0; margin-bottom:56px; }
+  .nav{ display:flex; justify-content:space-between; align-items:center; max-width:720px; margin:0 auto; padding:0 24px; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; }
+  .logo-dot{ width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .back{ font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--text-muted); }
+  main{ padding:0 0 100px; }
+  .card-tag{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:.04em; display:block; margin-bottom:16px; }
+  h1{ font-size:34px; margin-bottom:16px; line-height:1.2; }
+  .meta{ color:var(--text-muted); font-size:13.5px; font-family:'JetBrains Mono', monospace; margin-bottom:48px; }
+  h2{ font-size:21px; margin:40px 0 14px; }
+  p{ color:var(--text-muted); font-size:16px; margin-bottom:16px; }
+  strong{ color:var(--text); }
+  footer{ border-top:1px solid var(--line); padding:32px 24px; text-align:center; color:var(--text-muted); font-size:13px; }
+  .next{ margin-top:56px; padding-top:24px; border-top:1px solid var(--line); }
+
+[data-theme="light"]{
+  --bg:#F7F7FA; --surface:#FFFFFF; --line:#E2E2EA;
+  --text:#15161F; --text-muted:#5B5D6E; --accent:#7C3AED; --signal:#B36B00;
+}
+body{ transition: background-color .25s ease, color .25s ease; }
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1546994471915181" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+<meta property="og:title" content="Viziunea computerizată: cum vede un calculator — SINAPSA">
+<meta property="og:description" content="8 min citire">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://biciuscamugur-sys.github.io/viziunea-computerizata-cum-vede-un-calculator.html">
+<meta property="og:site_name" content="SINAPSA">
+<meta property="og:locale" content="ro_RO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Viziunea computerizată: cum vede un calculator — SINAPSA">
+<meta name="twitter:description" content="8 min citire">
+</head>
+<body>
+<button id="themeToggle" aria-label="Comuta tema" style="position:fixed; top:80px; right:20px; z-index:60; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:7px 11px; color:var(--text); cursor:pointer; font-size:14px; font-family:'JetBrains Mono', monospace;">🌙</button>
+
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo"><span class="logo-dot"></span>SINAPSA</a>
+    <a href="index.html#articole" class="back">← Toate articolele</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <span class="card-tag">AI · Aprofundat</span>
+  <h1>Viziunea computerizată: cum „vede" un calculator o imagine</h1>
+  <p class="meta">8 min citire</p>
+
+  <div style="width:100%; height:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; margin-bottom:32px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+    <svg width="200" height="140" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+      <rect x="30" y="40" width="60" height="60" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>
+      <g stroke="#292A38" stroke-width="0.5">
+        <line x1="45" y1="40" x2="45" y2="100"/><line x1="60" y1="40" x2="60" y2="100"/><line x1="75" y1="40" x2="75" y2="100"/>
+        <line x1="30" y1="55" x2="90" y2="55"/><line x1="30" y1="70" x2="90" y2="70"/><line x1="30" y1="85" x2="90" y2="85"/>
+      </g>
+      <path d="M 100 70 L 130 70" stroke="#8B5CF6" stroke-width="1.5"/>
+      <path d="M 124 65 L 131 70 L 124 75" fill="none" stroke="#8B5CF6" stroke-width="1.5"/>
+      <circle cx="160" cy="70" r="22" fill="none" stroke="#FFB020" stroke-width="1.5"/>
+      <circle cx="152" cy="63" r="2.5" fill="#FFB020"/><circle cx="168" cy="63" r="2.5" fill="#FFB020"/>
+      <path d="M 150 78 Q 160 85 170 78" fill="none" stroke="#FFB020" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <p>Ai citit despre senzorii ultrasonici și LiDAR — dar cum reușește, de fapt, un sistem să recunoască ce se află într-o imagine? Viziunea computerizată stă la baza a tot, de la deblocarea telefonului cu fața, până la mașinile autonome.</p>
+
+  <h2>Pasul 1 — O imagine e doar un tabel de numere</h2>
+  <p>Pentru un calculator, o fotografie e o grilă uriașă de pixeli, fiecare reprezentat prin trei numere (roșu, verde, albastru). Viziunea computerizată începe de la o listă imensă de numere, fără niciun „sens" evident atașat.</p>
+
+  <h2>Pasul 2 — Detectarea marginilor și tiparelor simple</h2>
+  <p>Primele straturi ale unui sistem de viziune computerizată (o rețea neuronală convoluțională, CNN) caută tipare simple: linii, margini, colțuri, zone de contrast — identice indiferent de conținutul imaginii.</p>
+
+  <h2>Pasul 3 — Combinarea tiparelor în forme</h2>
+  <p>Straturile următoare combină marginile simple în forme mai complexe: un cerc, un contur de ochi, o textură. Fiecare strat succesiv „vede" o abstractizare mai înaltă decât cel anterior.</p>
+
+  <h2>Pasul 4 — Recunoașterea obiectelor complete</h2>
+  <p>În straturile finale, sistemul combină formele parțiale pentru a recunoaște obiecte întregi. Această recunoaștere se bazează pe tipare învățate din milioane de imagini etichetate, nu pe reguli explicite.</p>
+
+  <h2>Aplicații practice, deja prezente</h2>
+  <p><strong>Deblocarea facială</strong> — compară trăsăturile feței cu un model salvat. <strong>Roboți cu recunoaștere de obiecte</strong> — disting un obstacol de o persoană. <strong>Diagnosticare medicală asistată</strong> — semnalează zone suspecte în scanări. <strong>Control de calitate industrial</strong> — detectează defecte vizuale automat. <strong>Vehicule autonome</strong> — identifică pietoni și semne de circulație.</p>
+
+  <h2>Limitările reale ale tehnologiei</h2>
+  <p>Viziunea computerizată poate fi păcălită de modificări minore, imperceptibile pentru ochiul uman. Performanța depinde direct de calitatea și diversitatea datelor de antrenare.</p>
+
+  <h2>Concluzie</h2>
+  <p>Viziunea computerizată transformă o grilă de numere într-o înțelegere structurată a unei imagini, prin straturi succesive de la tipare simple la recunoaștere completă. Mecanismul rămâne recunoaștere statistică a tiparelor, nu percepție vizuală în sensul uman.</p>
+
+  
+  <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--line);">
+    <p style="font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:14px;">Articole conexe</p>
+    <ul style="list-style:none; padding:0; margin:0;">
+    <li style="margin-bottom:8px;"><a href="cum-functioneaza-modelele-de-limbaj-llm.html">Cum funcționează modelele de limbaj mari</a></li>
+    <li style="margin-bottom:8px;"><a href="machine-learning-vs-deep-learning.html">Machine Learning vs Deep Learning</a></li>
+    <li style="margin-bottom:8px;"><a href="perceptie-robotica-senzori.html">Cum văd roboții mobili obstacolele</a></li>
+    </ul>
+  </div>
+  <div class="next">
+    <a href="ghid-cumparare-kit-arduino.html">→ Următorul articol: Ghid de cumpărare — kit Arduino</a>
+  </div>
+</main>
+
+<footer>© 2026 SINAPSA — <a href="index.html">înapoi la site</a></footer>
+
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ERBPS9SJ3Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-ERBPS9SJ3Q");
+</script>
+
+<!-- Formspree Formbutton -->
+<script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+<script>
+  window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+  formbutton("create", {
+    action: "https://formspree.io/f/xrenngnr",
+    title: "Ai o intrebare?",
+    fields: [
+      { type: "text", label: "Nume:", name: "nume", placeholder: "Numele tau" },
+      { type: "email", label: "Email:", name: "email", required: true, placeholder: "adresa.ta@email.com" },
+      { type: "textarea", label: "Mesaj:", name: "message", placeholder: "Cu ce te putem ajuta?" },
+      { type: "submit" }
+    ],
+    styles: { title: { backgroundColor: "#8B5CF6" }, button: { backgroundColor: "#8B5CF6" } }
+  });
+</script>
+
+
+<button id="backToTop" aria-label="Inapoi sus" style="position:fixed; bottom:24px; left:24px; width:44px; height:44px; border-radius:50%; background:var(--surface); border:1px solid var(--line); color:var(--text); font-size:18px; cursor:pointer; display:none; align-items:center; justify-content:center; z-index:40; box-shadow:0 4px 14px rgba(0,0,0,0.35);">↑</button>
+<script>
+  var backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', function(){
+    backToTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  backToTopBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  var themeToggle = document.getElementById('themeToggle');
+  var savedTheme = localStorage.getItem('sinapsa-theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme','light');
+    if (themeToggle) themeToggle.textContent = '☀️';
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(){
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('sinapsa-theme','dark');
+      } else {
+        document.documentElement.setAttribute('data-theme','light');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('sinapsa-theme','light');
+      }
+    });
+  }
+</script>
+</body>
+</html>
